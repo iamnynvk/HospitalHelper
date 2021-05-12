@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpScreen"
+    android:background="@color/colorPrimary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/back_button_relative"
+                android:layout_width="@dimen/size_30dp"
+                android:layout_height="@dimen/size_30dp"
+                android:layout_marginTop="@dimen/size_28dp"
+                android:layout_marginStart="@dimen/size_20dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/size_20dp"
+                    android:layout_height="@dimen/size_20dp"
+                    android:src="@drawable/baseline_arrow_back" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/logo_text_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_32dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/login_logo"
+                    android:layout_width="@dimen/size_70dp"
+                    android:layout_height="@dimen/size_40dp"
+                    android:src="@drawable/heading_logo"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/welcome_text_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:layout_below="@+id/logo_text_relative">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Let's get started !\nSign up"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/size_17dp"
+                    android:fontFamily="@font/montserratmedium"
+                    android:textAlignment="center"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/sub_title_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/welcome_text_relative"
+                android:layout_marginTop="@dimen/size_15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Enter your detail\nWe will help our site"
+                    android:textColor="@color/light_poison_color"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/size_14dp"
+                    android:fontFamily="@font/montserratregular"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

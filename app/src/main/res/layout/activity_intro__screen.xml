@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Intro_Screen"
+    android:background="@color/colorPrimary">
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/screen_viewpager"
+        android:layout_width="@dimen/size_300dp"
+        android:layout_height="@dimen/size_410dp"
+        app:layout_constraintBottom_toTopOf="@+id/tab_indicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.76" >
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <Button
+        android:id="@+id/button_next"
+        android:drawableTint="@color/colorPrimary"
+        android:drawableRight="@drawable/baseline_arrow_forward"
+        android:background="@drawable/button_style_four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_25dp"
+        android:text="Next"
+        android:layout_marginRight="@dimen/size_25dp"
+        android:layout_marginBottom="@dimen/size_15dp"
+        android:fontFamily="@font/montserratmedium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_25dp"
+        android:layout_marginLeft="@dimen/size_25dp"
+        android:layout_marginEnd="@dimen/size_6dp"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabBackground="@drawable/indicator_selecter"
+        android:layout_marginRight="@dimen/size_6dp"
+        android:layout_marginBottom="@dimen/size_12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_next"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <Button
+        android:id="@+id/button_getstarted"
+        android:layout_width="@dimen/size_260dp"
+        android:layout_height="@dimen/size_40dp"
+        android:layout_marginBottom="@dimen/size_35dp"
+        android:background="@drawable/button_style_two"
+        android:text="GET STARTED"
+        android:fontFamily="@font/montserratmedium"
+        android:textColor="@color/colorPrimary"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_skip"
+        android:layout_width="@dimen/size_60dp"
+        android:layout_height="@dimen/size_20dp"
+        android:layout_marginTop="@dimen/size_12dp"
+        android:layout_marginEnd="@dimen/size_6dp"
+        android:layout_marginRight="@dimen/size_6dp"
+        android:background="@color/transparent"
+        android:text="SKIP"
+        android:fontFamily="@font/montserratmedium"
+        android:textColor="@color/intro_desription_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/head_logo_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/button_skip"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:layout_width="@dimen/size_70dp"
+            android:layout_height="@dimen/size_40dp"
+            android:src="@drawable/heading_logo"/>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

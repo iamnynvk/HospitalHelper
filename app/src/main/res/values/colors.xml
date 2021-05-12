@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="title_color">#205072</color>
+    <color name="text_color">#329D9C</color>
+    <color name="button_color_1">#F75010</color>
+    <color name="button_color_2">#47CACC</color>
+
+    <color name="poison_green">#329D9C</color>
+    <color name="jambu_color">#205072</color>
+    <color name="pista_color">#7BE495</color>
+    <color name="light_pista_color">#56C596</color>
+    <color name="light_jambu_color">#2C6975</color>
+    <color name="light_poison_color">#68B2A0</color>
+    <color name="white_shadow_color">#E0ECDE</color>
+    <color name="dark_white_color">#CDE0C9</color>
+    <color name="light_sky_color">#47CACC</color>
+    <color name="lighter_jambu_color">#CDB3D4</color>
+    <color name="light_orange">#FFBE88</color>
+    <color name="similarwhite">#f2f2f2</color>
+    <color name="transparent"> #00000000</color>
+
+    <!--- color for tab and screen text-->
+    <color name="tab_indicator_grey">#c0c0c0</color>
+    <color name="intro_title_color">#000000</color>
+    <color name="intro_desription_color">#656565</color>
+
+    <!--- color for button style-->
+
+    <color name="gradient_start_color">#4c84ff</color>
+    <color name="gradient_end_color">#18a3fe</color>
+    <color name="backgroud_tint">#0099ff</color>
+    <color name="google_color">#FF0000</color>
+    <color name="facebook_color">#4267B2</color>
+    <color name="link_color">#0645AD</color>
+
+</resources>

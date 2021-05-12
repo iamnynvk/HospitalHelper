@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/size_100dp"/>
+
+    <gradient android:startColor="@color/pista_color"
+        android:endColor="@color/light_pista_color"/>
+</shape>

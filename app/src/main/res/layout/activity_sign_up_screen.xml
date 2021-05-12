@@ -20,7 +20,7 @@
                 android:id="@+id/back_button_relative"
                 android:layout_width="@dimen/size_30dp"
                 android:layout_height="@dimen/size_30dp"
-                android:layout_marginTop="@dimen/size_28dp"
+                android:layout_marginTop="@dimen/size_29dp"
                 android:layout_marginStart="@dimen/size_20dp"
                 android:gravity="center">
 

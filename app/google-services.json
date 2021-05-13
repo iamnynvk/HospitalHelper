@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "842978333427",
+    "project_id": "hospitalhelper07",
+    "storage_bucket": "hospitalhelper07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842978333427:android:c5015f9d337bca2a475d86",
+        "android_client_info": {
+          "package_name": "com.example.hospitalhelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "842978333427-cv37lgq5jbqrtvnuv3ivmfhms1a46jjl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hospitalhelper",
+            "certificate_hash": "cf5d78bb49a3e517d54f5c43156426dce7f6b8f8"
+          }
+        },
+        {
+          "client_id": "842978333427-7eruqifpnkpna4rnvkmsark9ugieqkn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtBty7XmbPTvIUBR7DA8bhOh3Aw-n6IE8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "842978333427-7eruqifpnkpna4rnvkmsark9ugieqkn8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

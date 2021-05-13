@@ -1,4 +1,4 @@
-package com.example.hospitalhelper.getter_setter;
+package com.example.hospitalhelper.Data_Holder;
 
 public class ScreenItem {
     String Title;

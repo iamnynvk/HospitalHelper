@@ -12,8 +12,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
-import com.example.hospitalhelper.adapter.IntroViewPagerAdapter;
-import com.example.hospitalhelper.getter_setter.ScreenItem;
+import com.example.hospitalhelper.Adapter.IntroViewPagerAdapter;
+import com.example.hospitalhelper.Data_Holder.ScreenItem;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;

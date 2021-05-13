@@ -1,4 +1,4 @@
-package com.example.hospitalhelper.adapter;
+package com.example.hospitalhelper.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.hospitalhelper.R;
-import com.example.hospitalhelper.getter_setter.ScreenItem;
+import com.example.hospitalhelper.Data_Holder.ScreenItem;
 
 import java.util.List;
 

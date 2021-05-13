@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
 
 public class LogInScreen extends AppCompatActivity {
 
@@ -52,14 +51,6 @@ public class LogInScreen extends AppCompatActivity {
             }
         });
 
-        login_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LogInScreen.this,HomeScreen.class);
-                startActivity(i);
-                finish();
-            }
-        });
     }
 
 }

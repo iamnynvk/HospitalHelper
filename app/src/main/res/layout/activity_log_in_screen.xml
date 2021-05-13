@@ -96,7 +96,7 @@
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
                     android:backgroundTint="@color/similarwhite"
-                    android:text=""
+                    android:text="vekariyanayan2000@gmail.com"
                     android:textColor="@color/title_color" />
             </RelativeLayout>
 
@@ -131,7 +131,7 @@
                     android:fontFamily="@font/montserratmedium"
                     android:padding="@dimen/size_10dp"
                     android:backgroundTint="@color/similarwhite"
-                    android:text=""
+                    android:text="nayan12345"
                     android:textColor="@color/title_color" />
 
                 <TextView
@@ -146,7 +146,7 @@
                     android:text="Forgotten Password?"
                     android:textStyle="bold"
                     android:textColor="@color/title_color"
-                    android:textSize="@dimen/size_10dp" />
+                    android:textSize="@dimen/size_11dp" />
             </RelativeLayout>
 
              <RelativeLayout
@@ -154,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/password_relative"
-                android:layout_marginTop="@dimen/size_60dp">
+                android:layout_marginTop="@dimen/size_50dp">
 
                  <Button
                      android:id="@+id/login_button"
@@ -183,7 +183,7 @@
                     android:text="Don't have an account?"
                     android:textColor="@color/text_color"
                     android:fontFamily="@font/montserratmedium"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/size_12dp" />
 
                 <TextView
                     android:id="@+id/signup_link"
@@ -192,7 +192,7 @@
                     android:text="Sign Up"
                     android:fontFamily="@font/montserratmedium"
                     android:textColor="@color/link_color"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/size_12dp" />
             </LinearLayout>
 
            <!-- <RelativeLayout

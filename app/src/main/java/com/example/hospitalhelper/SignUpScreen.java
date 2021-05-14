@@ -33,7 +33,7 @@ public class SignUpScreen extends AppCompatActivity implements AdapterView.OnIte
     DatePickerDialog datePickerDialog;
 
     //Button
-    Button birthday_pick_button;
+        Button birthday_pick_button;
     Spinner bloodgroup_button;
 
     ImageView BackButton;
@@ -254,6 +254,10 @@ public class SignUpScreen extends AppCompatActivity implements AdapterView.OnIte
         else if (password.length() == 0 ){
             Toast.makeText(this,"Please Enter Password", Toast.LENGTH_SHORT).show();
         }
+        else if (GenderGroup.getCheckedRadioButtonId() == -1){
+            Toast.makeText(getApplicationContext(), "Select Gender", Toast.LENGTH_SHORT).show();
+        }
+
 
 
 

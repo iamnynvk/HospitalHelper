@@ -84,6 +84,7 @@
                 android:id="@+id/select_photo_relative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_17dp"
                 android:layout_below="@+id/sub_title_relative">
 
                 <TextView
@@ -91,11 +92,21 @@
                     android:layout_height="wrap_content"
                     android:text="Please Select Photo"
                     android:textColor="@color/title_color"
-                    android:textSize="@dimen/size_12dp"
+                    android:textSize="@dimen/size_13dp"
                     android:fontFamily="@font/montserratregular"
                     android:textStyle="bold"
                     android:layout_marginLeft="@dimen/size_23dp"
-                    android:layout_marginTop="@dimen/size_25dp"/>
+                    android:layout_marginTop="@dimen/size_26dp"/>
+
+                <Button
+                    android:id="@+id/profile_photo_chooser"
+                    android:layout_width="@dimen/size_80dp"
+                    android:layout_height="@dimen/size_30dp"
+                    android:text="Choose"
+                    android:background="@drawable/button_style_four"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/size_15dp"
+                    android:layout_marginTop="@dimen/size_21dp"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -107,10 +118,10 @@
                 android:layout_below="@+id/select_photo_relative">
 
                 <ImageView
+                    android:id="@+id/profile_photo_set"
                     android:layout_width="@dimen/size_150dp"
                     android:layout_height="@dimen/size_150dp"
                     android:src="@drawable/profile_photo"/>
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -444,7 +455,7 @@
                     android:textSize="@dimen/size_12dp" />
 
                 <CheckBox
-                    android:id="@+id/signup_check"
+                    android:id="@+id/termcondition_check"
                     android:layout_width="@dimen/size_23dp"
                     android:layout_height="@dimen/size_23dp"
                     android:textColor="@color/title_color"

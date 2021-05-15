@@ -98,10 +98,10 @@ public class SignUpScreen extends AppCompatActivity{
         Gallary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
+                /*Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent,"Select Profile Photo"),1);
-                /*Dexter.withContext(SignUpScreen.this)
+                startActivityForResult(Intent.createChooser(intent,"Select Profile Photo"),1);*/
+                Dexter.withContext(SignUpScreen.this)
                         .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                         .withListener(new PermissionListener() {
                             @Override
@@ -120,7 +120,7 @@ public class SignUpScreen extends AppCompatActivity{
                             public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
                                 permissionToken.continuePermissionRequest();
                             }
-                        }).check();*/
+                        }).check();
             }
         });
 
@@ -130,7 +130,6 @@ public class SignUpScreen extends AppCompatActivity{
                 UploadDataOnFirebase();
             }
         });
-
     }
 
     public void onBackPressed(){
@@ -158,57 +157,65 @@ public class SignUpScreen extends AppCompatActivity{
 
     private void UploadDataOnFirebase() {
 
-        int genderselecter = GenderButtonGroup.getCheckedRadioButtonId();
-        GenderButton = (RadioButton) findViewById(genderselecter);
+        if (Validate()) {
 
-        final String Firstname = FirstName.getText().toString().trim();
-        final String Lastname = LastName.getText().toString().trim();
-        final String Emailid = Emails.getText().toString().trim();
-        final String Mobileno = MobileNo.getText().toString().trim();
-        final String Genderbutton = GenderButton.getText().toString();
-        final String Birthdate = BirthDate.getText().toString().trim();
-        final String Password = Passwords.getText().toString().trim();
+            int genderselecter = GenderButtonGroup.getCheckedRadioButtonId();
+            GenderButton = (RadioButton) findViewById(genderselecter);
+
+            final String Firstname = FirstName.getText().toString().trim();
+            final String Lastname = LastName.getText().toString().trim();
+            final String Emailid = Emails.getText().toString().trim();
+            final String Mobileno = MobileNo.getText().toString().trim();
+            final String Genderbutton = GenderButton.getText().toString();
+            final String Birthdate = BirthDate.getText().toString().trim();
+            final String Password = Passwords.getText().toString().trim();
 
 
             ProgressDialog dialog = new ProgressDialog(this);
             dialog.setTitle("File Uploader");
             dialog.show();
 
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference Uploader = storage.getReference().child("Profile_Photo/" + resultUri.getLastPathSegment());
+            if (resultUri != null) {
 
-            Uploader.putFile(resultUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference Uploader = storage.getReference().child("Profile_Photo/" + resultUri.getLastPathSegment());
 
-                                    FirebaseDatabase db = FirebaseDatabase.getInstance();
-                                    DatabaseReference root = db.getReference("Patients");
+                Uploader.putFile(resultUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                Uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
 
-                                    NewUserHelper newUserHelper = new NewUserHelper(Firstname, Lastname, Emailid, Mobileno, Genderbutton, Birthdate, Password, uri.toString());
-                                    root.child(Mobileno).setValue(newUserHelper);
+                                        FirebaseDatabase db = FirebaseDatabase.getInstance();
+                                        DatabaseReference root = db.getReference("Patients");
 
-                                    Toast.makeText(SignUpScreen.this, "Registration Successfull", Toast.LENGTH_LONG).show();
+                                        NewUserHelper newUserHelper = new NewUserHelper(Firstname, Lastname, Emailid, Mobileno, Genderbutton, Birthdate, Password, uri.toString());
+                                        root.child(Mobileno).setValue(newUserHelper);
 
-                                    Intent i = new Intent(SignUpScreen.this, LogInScreen.class);
-                                    startActivity(i);
-                                    finish();
-                                }
-                            });
-                        }
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                            float percentage = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
-                            dialog.setMessage("Uploading " + (int) percentage + " %");
-                        }
-                    });
+                                        Toast.makeText(SignUpScreen.this, "Registration Successfull", Toast.LENGTH_LONG).show();
+
+                                        Intent i = new Intent(SignUpScreen.this, LogInScreen.class);
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                });
+                            }
+                        })
+                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                                float percentage = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                                dialog.setMessage("Uploading " + (int) percentage + " %");
+                            }
+                        });
+            } else {
+                dialog.dismiss();
+                Toast.makeText(this, "Please Select Image", Toast.LENGTH_LONG).show();
+            }
         }
-
+    }
     private boolean Validate() {
         Boolean result = false;
 
@@ -243,6 +250,6 @@ public class SignUpScreen extends AppCompatActivity{
         else {
             result = true;
         }
-        return false;
+        return result;
     }
 }

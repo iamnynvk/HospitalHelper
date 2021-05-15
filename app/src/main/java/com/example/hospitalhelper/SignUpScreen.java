@@ -1,53 +1,72 @@
 package com.example.hospitalhelper;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+import com.example.hospitalhelper.Data_Holder.NewUserHelper;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
-import java.util.Calendar;
+import java.io.InputStream;
+import java.text.BreakIterator;
+import java.util.HashMap;
+import java.util.Map;
 
-public class SignUpScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    // DatePicker
-    DatePickerDialog datePickerDialog;
+import de.hdodenhof.circleimageview.CircleImageView;
 
-    //Button
-        Button birthday_pick_button;
-    Spinner bloodgroup_button;
+import static com.karumi.dexter.Dexter.withActivity;
+
+public class SignUpScreen extends AppCompatActivity{
 
     ImageView BackButton;
-    Button ProfilePhotoChooser;
-    ImageView ProfilePhotoSet;
-    Uri uri;
+    Button Gallary;
+    final static int IMAGE_CODE = 1;
+    Bitmap bitmap;
+    CircleImageView ProfilePhoto;
+    Button Register;
 
+    EditText FirstName,LastName,Emails,MobileNo,BirthDate,Passwords;
 
-    EditText FirstName, LastName, Email, MobileNo, Password;
-    RadioGroup GenderGroup;
+    RadioGroup GenderButtonGroup;
     RadioButton GenderButton;
-    CheckBox TermCondition;
-    Button Registration;
-    ProgressDialog mprogress;
+
+    // Database
+    Uri resultUri;
+    DatabaseReference mdatabaseref;
+    StorageReference mstorageref;
 
 
     @Override
@@ -55,36 +74,20 @@ public class SignUpScreen extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_screen);
 
-        // Name-Specifier
-        FirstName = findViewById(R.id.signup_firstname_edittext);
-        LastName = findViewById(R.id.signup_lastname_edittext);
-        Email = findViewById(R.id.signup_email_edittext);
-        MobileNo = findViewById(R.id.signup_mobile_edittext);
-        Password = findViewById(R.id.signup_password_edittext);
+        BackButton = (ImageView) findViewById(R.id.back_button);
+        Gallary = (Button) findViewById(R.id.profile_photo_chooser);
+        ProfilePhoto = (CircleImageView) findViewById(R.id.profile_photo_set);
+        FirstName = (EditText) findViewById(R.id.signup_firstname_edittext);
+        LastName = (EditText) findViewById(R.id.signup_lastname_edittext);
+        Emails = (EditText) findViewById(R.id.signup_email_edittext);
+        MobileNo = (EditText) findViewById(R.id.signup_mobile_edittext);
+        BirthDate = (EditText) findViewById(R.id.signup_birthday_edittext);
+        Passwords = (EditText) findViewById(R.id.signup_password_edittext);
+        Register = (Button) findViewById(R.id.Register_button);
 
-        GenderGroup = findViewById(R.id.signup_genderbutton_group);
+        GenderButtonGroup = (RadioGroup) findViewById(R.id.signup_genderbutton_group);
 
-        TermCondition = findViewById(R.id.termcondition_check);
-        Registration = findViewById(R.id.Register_button);
-        BackButton = findViewById(R.id.back_button);
-        ProfilePhotoChooser = findViewById(R.id.profile_photo_chooser);
-        ProfilePhotoSet = findViewById(R.id.profile_photo_set);
-        mprogress = new ProgressDialog(this);
-
-        birthday_pick_button = findViewById(R.id.signup_birthday_pick_button);
-        bloodgroup_button = findViewById(R.id.signup_bloodgroup_button);
-
-
-        initDatePicker();
-        birthday_pick_button.setText(getTodayDate());
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.bloodgroup, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        bloodgroup_button.setAdapter(adapter);
-        bloodgroup_button.setOnItemSelectedListener(this);
-
-
-        // Action Here
+        // Action Here...
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,152 +95,129 @@ public class SignUpScreen extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        ProfilePhotoChooser.setOnClickListener(new View.OnClickListener() {
+        Gallary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CropImage.activity()
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .setAspectRatio(1, 1)
-                        .start(SignUpScreen.this);
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser(intent,"Select Profile Photo"),1);
+                /*Dexter.withContext(SignUpScreen.this)
+                        .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        .withListener(new PermissionListener() {
+                            @Override
+                            public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                                Intent intent = new Intent(Intent.ACTION_PICK);
+                                intent.setType("image/*");
+                                startActivityForResult(Intent.createChooser(intent,"Select Profile Photo"),1);
+                            }
+
+                            @Override
+                            public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+
+                            }
+
+                            @Override
+                            public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+                                permissionToken.continuePermissionRequest();
+                            }
+                        }).check();*/
             }
         });
 
-        Registration.setOnClickListener(new View.OnClickListener() {
+        Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegisterNewUser();
+                UploadDataOnFirebase();
             }
         });
 
-
     }
 
-    // Date Picker Set Function's
-
-    private String getTodayDate() {
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        month = month + 1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
-    }
-
-    private void initDatePicker() {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month + 1;
-                String date = makeDateString(dayOfMonth, month, year);
-                birthday_pick_button.setText(date);
-            }
-        };
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-
-        int style = AlertDialog.THEME_HOLO_LIGHT;
-
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-    }
-
-    private String makeDateString(int dayOfMonth, int month, int year) {
-        return getMonthFormate(month) + " " + dayOfMonth + " " + year;
-    }
-
-    private String getMonthFormate(int month) {
-        if (month == 1)
-            return "JAN";
-        if (month == 2)
-            return "FEB";
-        if (month == 3)
-            return "MAR";
-        if (month == 4)
-            return "APR";
-        if (month == 5)
-            return "MAY";
-        if (month == 6)
-            return "JUN";
-        if (month == 7)
-            return "JUL";
-        if (month == 8)
-            return "AUG";
-        if (month == 9)
-            return "SEP";
-        if (month == 10)
-            return "OCT";
-        if (month == 11)
-            return "NOV";
-        if (month == 12)
-            return "DEC";
-
-        // default should never happer
-        return "JAN";
-    }
-
-    public void openDatePicker(View view) {
-        datePickerDialog.show();
-    }
-
-    // Drop down set function's
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-    // Back Button & Back Action
-    public void onBackPressed() {
-        Intent i = new Intent(SignUpScreen.this, LogInScreen.class);
+    public void onBackPressed(){
+        Intent i = new Intent(SignUpScreen.this,LogInScreen.class);
         startActivity(i);
         finish();
     }
 
-    // Croping Photo set in Profile-Setter ImageView
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                uri = result.getUri();
-                ProfilePhotoSet.setImageURI(uri);
+        if (requestCode == IMAGE_CODE && resultCode == RESULT_OK && data != null){
+            resultUri = data.getData();
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(resultUri);
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                ProfilePhoto.setImageBitmap(bitmap);
+            }catch (Exception ex){
 
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
             }
-        }
-    }
-
-    // Uploading Data & Register Data With Validation
-    private void RegisterNewUser() {
-
-        // Gender GetData Which Select
-        int GenderSelector = GenderGroup.getCheckedRadioButtonId();
-        GenderButton = (RadioButton) findViewById(GenderSelector);
-
-        if (Validate()) {
-
-        } else {
+        }else {
 
         }
     }
+
+    private void UploadDataOnFirebase() {
+
+        int genderselecter = GenderButtonGroup.getCheckedRadioButtonId();
+        GenderButton = (RadioButton) findViewById(genderselecter);
+
+        final String Firstname = FirstName.getText().toString().trim();
+        final String Lastname = LastName.getText().toString().trim();
+        final String Emailid = Emails.getText().toString().trim();
+        final String Mobileno = MobileNo.getText().toString().trim();
+        final String Genderbutton = GenderButton.getText().toString();
+        final String Birthdate = BirthDate.getText().toString().trim();
+        final String Password = Passwords.getText().toString().trim();
+
+
+            ProgressDialog dialog = new ProgressDialog(this);
+            dialog.setTitle("File Uploader");
+            dialog.show();
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference Uploader = storage.getReference().child("Profile_Photo/" + resultUri.getLastPathSegment());
+
+            Uploader.putFile(resultUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    FirebaseDatabase db = FirebaseDatabase.getInstance();
+                                    DatabaseReference root = db.getReference("Patients");
+
+                                    NewUserHelper newUserHelper = new NewUserHelper(Firstname, Lastname, Emailid, Mobileno, Genderbutton, Birthdate, Password, uri.toString());
+                                    root.child(Mobileno).setValue(newUserHelper);
+
+                                    Toast.makeText(SignUpScreen.this, "Registration Successfull", Toast.LENGTH_LONG).show();
+
+                                    Intent i = new Intent(SignUpScreen.this, LogInScreen.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+                            });
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                            float percentage = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                            dialog.setMessage("Uploading " + (int) percentage + " %");
+                        }
+                    });
+        }
 
     private boolean Validate() {
         Boolean result = false;
 
         String firstname = FirstName.getText().toString().trim();
         String lastname = LastName.getText().toString().trim();
-        String email = Email.getText().toString().trim();
+        String email = Emails.getText().toString().trim();
         String mobileno = MobileNo.getText().toString().trim();
-        String password = Password.getText().toString().trim();
+        String birthdate = BirthDate.getText().toString().trim();
+        String password = Passwords.getText().toString().trim();
 
         if (firstname.length() == 0){
             Toast.makeText(this,"Please Enter First Name", Toast.LENGTH_SHORT).show();
@@ -248,22 +228,21 @@ public class SignUpScreen extends AppCompatActivity implements AdapterView.OnIte
         else if (email.length() == 0 ){
             Toast.makeText(this,"Please Enter Email ID", Toast.LENGTH_SHORT).show();
         }
-        else if (mobileno.length() == 0 && mobileno.length() == 1 && mobileno.length() == 2 && mobileno.length() == 3 && mobileno.length() == 4 && mobileno.length() == 5 && mobileno.length() == 6 && mobileno.length() == 7 && mobileno.length() == 8 && mobileno.length() == 9 ){
+        else if (mobileno.length() == 0 || mobileno.length() == 1 || mobileno.length() == 2 || mobileno.length() == 3 || mobileno.length() == 4 || mobileno.length() == 5 || mobileno.length() == 6 || mobileno.length() == 7 || mobileno.length() == 8 || mobileno.length() == 9 ){
             Toast.makeText(this,"Please Enter Valid Mobile No", Toast.LENGTH_SHORT).show();
+        }
+        else if (GenderButtonGroup.getCheckedRadioButtonId() == -1){
+            Toast.makeText(getApplicationContext(), "Select Gender", Toast.LENGTH_SHORT).show();
+        }
+        else if (birthdate.length() == 0){
+            Toast.makeText(this,"Please Enter Birthdate", Toast.LENGTH_SHORT).show();
         }
         else if (password.length() == 0 ){
             Toast.makeText(this,"Please Enter Password", Toast.LENGTH_SHORT).show();
         }
-        else if (GenderGroup.getCheckedRadioButtonId() == -1){
-            Toast.makeText(getApplicationContext(), "Select Gender", Toast.LENGTH_SHORT).show();
+        else {
+            result = true;
         }
-
-
-
-
-
-
-
         return false;
     }
 }

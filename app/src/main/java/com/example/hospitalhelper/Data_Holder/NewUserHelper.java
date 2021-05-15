@@ -1,105 +1,80 @@
 package com.example.hospitalhelper.Data_Holder;
 
 public class NewUserHelper {
-    String profileimage,firstname,lastname,email,mobileno,gender,password,birthdate,bloodgroup,userid;
+    String Firstname,Lastname,Emailid,Mobileno,Genderbutton,Birthdate,Password,profileimg;
 
-    // constructor
-
-    public NewUserHelper() {
-    }
-
-    public NewUserHelper(String profileimage, String firstname, String lastname, String email, String mobileno, String gender, String password, String birthdate, String bloodgroup, String userid) {
-        this.profileimage = profileimage;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.mobileno = mobileno;
-        this.gender = gender;
-        this.password = password;
-        this.birthdate = birthdate;
-        this.bloodgroup = bloodgroup;
-        this.userid = userid;
-    }
-
-    // getter-setter
-
-    public String getProfileimage() {
-        return profileimage;
-    }
-
-    public void setProfileimage(String profileimage) {
-        this.profileimage = profileimage;
+    public NewUserHelper(String firstname, String lastname, String emailid, String mobileno, String genderbutton, String birthdate, String password, String profileimg) {
+        Firstname = firstname;
+        Lastname = lastname;
+        Emailid = emailid;
+        Mobileno = mobileno;
+        Genderbutton = genderbutton;
+        Birthdate = birthdate;
+        Password = password;
+        this.profileimg = profileimg;
     }
 
     public String getFirstname() {
-        return firstname;
+        return Firstname;
     }
 
     public void setFirstname(String firstname) {
-        this.firstname = firstname;
+        Firstname = firstname;
     }
 
     public String getLastname() {
-        return lastname;
+        return Lastname;
     }
 
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        Lastname = lastname;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailid() {
+        return Emailid;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailid(String emailid) {
+        Emailid = emailid;
     }
 
     public String getMobileno() {
-        return mobileno;
+        return Mobileno;
     }
 
     public void setMobileno(String mobileno) {
-        this.mobileno = mobileno;
+        Mobileno = mobileno;
     }
 
-    public String getGender() {
-        return gender;
+    public String getGenderbutton() {
+        return Genderbutton;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setGenderbutton(String genderbutton) {
+        Genderbutton = genderbutton;
     }
 
     public String getBirthdate() {
-        return birthdate;
+        return Birthdate;
     }
 
     public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
+        Birthdate = birthdate;
     }
 
-    public String getBloodgroup() {
-        return bloodgroup;
+    public String getPassword() {
+        return Password;
     }
 
-    public void setBloodgroup(String bloodgroup) {
-        this.bloodgroup = bloodgroup;
+    public void setPassword(String password) {
+        Password = password;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getProfileimg() {
+        return profileimg;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setProfileimg(String profileimg) {
+        this.profileimg = profileimg;
     }
 }

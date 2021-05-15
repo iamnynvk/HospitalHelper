@@ -73,11 +73,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserratregular"
                     android:text="Enter your detail\nWe will help our site"
-                    android:textColor="@color/light_poison_color"
                     android:textAlignment="center"
-                    android:textSize="@dimen/size_14dp"
-                    android:fontFamily="@font/montserratregular"/>
+                    android:textColor="@color/light_poison_color"
+                    android:textSize="@dimen/size_14dp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -117,7 +117,7 @@
                 android:layout_marginTop="@dimen/size_10dp"
                 android:layout_below="@+id/select_photo_relative">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_photo_set"
                     android:layout_width="@dimen/size_150dp"
                     android:layout_height="@dimen/size_150dp"
@@ -154,6 +154,8 @@
                     android:fontFamily="@font/montserratmedium"
                     android:inputType="textPersonName"
                     android:padding="10dp"
+                    android:hint="Marlin"
+                    android:textColorHint="@color/tab_indicator_grey"
                     android:backgroundTint="@color/similarwhite"
                     android:textColor="@color/title_color" />
             </RelativeLayout>
@@ -190,6 +192,8 @@
                     android:padding="10dp"
                     android:backgroundTint="@color/similarwhite"
                     android:text=""
+                    android:hint="Patterson"
+                    android:textColorHint="@color/tab_indicator_grey"
                     android:textColor="@color/title_color" />
             </RelativeLayout>
 
@@ -225,6 +229,8 @@
                     android:padding="10dp"
                     android:backgroundTint="@color/similarwhite"
                     android:text=""
+                    android:hint="Yourname@email.com"
+                    android:textColorHint="@color/tab_indicator_grey"
                     android:textColor="@color/title_color" />
             </RelativeLayout>
 
@@ -261,6 +267,8 @@
                     android:maxLength="10"
                     android:backgroundTint="@color/similarwhite"
                     android:text=""
+                    android:hint="Ex.8090807090"
+                    android:textColorHint="@color/tab_indicator_grey"
                     android:textColor="@color/title_color" />
             </RelativeLayout>
 
@@ -328,10 +336,48 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/signup_birthday_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/signup_gendergroup_relative"
+                android:layout_marginTop="@dimen/size_17dp">
+
+                <TextView
+                    android:id="@+id/signup_birthday_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_23dp"
+                    android:fontFamily="@font/montserratregular"
+                    android:text="Birthdate"
+                    android:textStyle="bold"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/size_12dp" />
+
+                <EditText
+                    android:id="@+id/signup_birthday_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_40dp"
+                    android:layout_below="@+id/signup_birthday_text"
+                    android:layout_marginLeft="@dimen/size_23dp"
+                    android:layout_marginTop="@dimen/size_5dp"
+                    android:layout_marginRight="@dimen/size_25dp"
+                    android:background="@drawable/edit_text_style"
+                    android:inputType="text"
+                    android:fontFamily="@font/montserratmedium"
+                    android:padding="@dimen/size_10dp"
+                    android:backgroundTint="@color/similarwhite"
+                    android:text=""
+                    android:hint="Ex.01/01/2020"
+                    android:textColorHint="@color/tab_indicator_grey"
+                    android:textColor="@color/title_color" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/signup_password_relative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/signup_gendergroup_relative"
+                android:layout_below="@id/signup_birthday_relative"
                 android:layout_marginTop="@dimen/size_17dp">
 
                 <TextView
@@ -359,129 +405,46 @@
                     android:padding="@dimen/size_10dp"
                     android:backgroundTint="@color/similarwhite"
                     android:text=""
+                    android:hint="*************"
+                    android:textColorHint="@color/tab_indicator_grey"
                     android:textColor="@color/title_color" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/signup_birthday_relative"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/signup_password_relative"
-                android:layout_marginTop="@dimen/size_17dp">
-
-                <TextView
-                    android:id="@+id/signup_birthday_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/size_23dp"
-                    android:fontFamily="@font/montserratregular"
-                    android:text="Birthdate"
-                    android:textStyle="bold"
-                    android:textColor="@color/title_color"
-                    android:textSize="@dimen/size_12dp" />
-
-
-                <Button
-                    android:id="@+id/signup_birthday_pick_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_40dp"
-                    android:text="JAN 01 2021"
-                    android:textColor="@color/title_color"
-                    android:fontFamily="@font/montserratmedium"
-                    android:padding="@dimen/size_10dp"
-                    android:backgroundTint="@color/similarwhite"
-                    android:background="@drawable/edit_text_style"
-                    android:layout_below="@+id/signup_birthday_text"
-                    android:layout_marginLeft="@dimen/size_23dp"
-                    android:layout_marginTop="@dimen/size_5dp"
-                    android:layout_marginRight="@dimen/size_25dp"
-                    android:onClick="openDatePicker"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/signup_bloodgroup_relative"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/signup_birthday_relative"
-                android:layout_marginTop="@dimen/size_17dp">
-
-                <TextView
-                    android:id="@+id/signup_bloodgroup_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/size_23dp"
-                    android:fontFamily="@font/montserratregular"
-                    android:text="Blood Group"
-                    android:textStyle="bold"
-                    android:textColor="@color/title_color"
-                    android:textSize="@dimen/size_12dp" />
-
-                <Spinner
-                    android:id="@+id/signup_bloodgroup_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_40dp"
-                    android:layout_below="@+id/signup_bloodgroup_text"
-                    android:textColor="@color/title_color"
-                    android:fontFamily="@font/montserratmedium"
-                    android:padding="@dimen/size_10dp"
-                    android:textAlignment="center"
-                    android:backgroundTintMode="multiply"
-                    android:background="@drawable/edit_text_style_two"
-                    android:backgroundTint="@color/similarwhite"
-                    android:layout_marginLeft="@dimen/size_23dp"
-                    android:layout_marginTop="@dimen/size_5dp"
-                    android:layout_marginRight="@dimen/size_25dp"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/termcondition_relative"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/signup_bloodgroup_relative"
-                android:layout_marginTop="@dimen/size_40dp">
-
-                <TextView
-                    android:id="@+id/termcondition_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserratregular"
-                    android:text="Please apply term and conditions"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_marginStart="@dimen/size_50dp"
-                    android:layout_marginEnd="@dimen/size_40dp"
-                    android:layout_marginTop="@dimen/size_13dp"
-                    android:textColor="@color/title_color"
-                    android:textSize="@dimen/size_12dp" />
-
-                <CheckBox
-                    android:id="@+id/termcondition_check"
-                    android:layout_width="@dimen/size_23dp"
-                    android:layout_height="@dimen/size_23dp"
-                    android:textColor="@color/title_color"
-                    android:gravity="center"
-                    android:background="@drawable/edit_text_style"
-                    android:layout_marginLeft="@dimen/size_21dp"
-                    android:layout_marginTop="@dimen/size_10dp"/>
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/Register_button_relative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/termcondition_relative"
-                android:layout_marginTop="@dimen/size_17dp"
-                android:layout_marginBottom="@dimen/size_30dp">
+                android:layout_below="@+id/signup_password_relative"
+                android:layout_marginTop="@dimen/size_45dp">
 
                 <Button
                     android:id="@+id/Register_button"
-                    android:layout_width="@dimen/size_260dp"
+                    android:layout_width="match_parent"
                     android:layout_height="@dimen/size_40dp"
                     android:layout_marginLeft="@dimen/size_23dp"
-                    android:background="@drawable/button_style_two"
+                    android:layout_marginRight="@dimen/size_25dp"
+                    android:background="@drawable/button_style_four"
                     android:fontFamily="@font/montserratbold"
                     android:text="Join us"
                     android:textSize="@dimen/size_12dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Register_button_relative"
+                android:layout_marginTop="@dimen/size_17dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="By continuing, you agree to accept our\nPrivacy Policy and Terms of Service"
+                    android:textColor="@color/title_color"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/size_11dp"
+                    android:padding="@dimen/size_20dp"
+                    android:lineSpacingExtra="5dp"
+                    android:fontFamily="@font/montserratmedium"/>
             </RelativeLayout>
 
         </RelativeLayout>

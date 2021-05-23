@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -271,7 +272,7 @@ public class SignUpScreen extends AppCompatActivity{
         else if (lastname.length() == 0 ){
             Toast.makeText(this,"Please Enter Last Name", Toast.LENGTH_SHORT).show();
         }
-        else if (email.length() == 0 ){
+        else if (!validateEmailAddress(Emails)){
             Toast.makeText(this,"Please Enter Email ID", Toast.LENGTH_SHORT).show();
         }
         else if (mobileno.length() == 0 || mobileno.length() == 1 || mobileno.length() == 2 || mobileno.length() == 3 || mobileno.length() == 4 || mobileno.length() == 5 || mobileno.length() == 6 || mobileno.length() == 7 || mobileno.length() == 8 || mobileno.length() == 9 ){
@@ -290,5 +291,17 @@ public class SignUpScreen extends AppCompatActivity{
             result = true;
         }
         return result;
+    }
+
+    private boolean validateEmailAddress(EditText email) {
+        String emailInput = Emails.getText().toString();
+
+        if(!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches())
+        {
+            return true;
+        }
+        else {
+            return  false;
+        }
     }
 }

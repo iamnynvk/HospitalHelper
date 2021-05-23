@@ -26,8 +26,8 @@
 
                 <ImageView
                     android:id="@+id/back_button"
-                    android:layout_width="@dimen/size_20dp"
-                    android:layout_height="@dimen/size_20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/baseline_arrow_back" />
             </RelativeLayout>
 
@@ -221,17 +221,17 @@
                     android:layout_height="@dimen/size_40dp"
                     android:layout_below="@id/signup_email_textview"
                     android:layout_marginLeft="@dimen/size_23dp"
-                    android:layout_marginTop="@dimen/size_5dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginRight="@dimen/size_25dp"
                     android:background="@drawable/edit_text_style"
+                    android:backgroundTint="@color/similarwhite"
                     android:fontFamily="@font/montserratmedium"
+                    android:hint="Yourname@email.com"
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
-                    android:backgroundTint="@color/similarwhite"
                     android:text=""
-                    android:hint="Yourname@email.com"
-                    android:textColorHint="@color/tab_indicator_grey"
-                    android:textColor="@color/title_color" />
+                    android:textColor="@color/title_color"
+                    android:textColorHint="@color/tab_indicator_grey" />
             </RelativeLayout>
 
             <RelativeLayout

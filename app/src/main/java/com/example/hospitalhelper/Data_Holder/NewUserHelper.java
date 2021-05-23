@@ -1,9 +1,9 @@
 package com.example.hospitalhelper.Data_Holder;
 
 public class NewUserHelper {
-    String Firstname,Lastname,Emailid,Mobileno,Genderbutton,Birthdate,Password,profileimg;
+    String Firstname,Lastname,Emailid,Mobileno,Genderbutton,Birthdate,Password,profileimg,user;
 
-    public NewUserHelper(String firstname, String lastname, String emailid, String mobileno, String genderbutton, String birthdate, String password, String profileimg) {
+    public NewUserHelper(String firstname, String lastname, String emailid, String mobileno, String genderbutton, String birthdate, String password, String profileimg, String user) {
         Firstname = firstname;
         Lastname = lastname;
         Emailid = emailid;
@@ -12,6 +12,7 @@ public class NewUserHelper {
         Birthdate = birthdate;
         Password = password;
         this.profileimg = profileimg;
+        this.user = user;
     }
 
     public String getFirstname() {
@@ -76,5 +77,13 @@ public class NewUserHelper {
 
     public void setProfileimg(String profileimg) {
         this.profileimg = profileimg;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

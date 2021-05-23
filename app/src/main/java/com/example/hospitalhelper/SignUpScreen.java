@@ -24,8 +24,11 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.hospitalhelper.Data_Holder.NewUserHelper;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -71,7 +74,7 @@ public class SignUpScreen extends AppCompatActivity{
 
     Uri resultUri;
     FirebaseFirestore clouddatabase;
-
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,61 +192,75 @@ public class SignUpScreen extends AppCompatActivity{
                         MobileNo.requestFocus();
                         dialog1.dismiss();
 
-                    }else{
-                        ProgressDialog dialog = new ProgressDialog(SignUpScreen.this);
-                        dialog.setTitle("File Uploader");
-                        dialog.show();
+                    }
+                    else{
 
-                        if (resultUri != null) {
+                        mAuth = FirebaseAuth.getInstance();
 
-                            FirebaseStorage storage = FirebaseStorage.getInstance();
-                            StorageReference Uploader = storage.getReference().child("Profile_Photo/" + resultUri.getLastPathSegment());
+                        mAuth.createUserWithEmailAndPassword(Emailid,Password)
+                                .addOnCompleteListener(SignUpScreen.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if(task.isSuccessful())
+                                        {
+                                            ProgressDialog dialog = new ProgressDialog(SignUpScreen.this);
+                                            dialog.setTitle("File Uploader");
+                                            dialog.show();
 
-                            Uploader.putFile(resultUri)
-                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                            Uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                @Override
-                                                public void onSuccess(Uri uri) {
+                                            if (resultUri != null) {
 
-                                                    // Storedata in Realtime Database
-                                                    FirebaseDatabase db = FirebaseDatabase.getInstance();
-                                                    DatabaseReference root = db.getReference("Patients");
+                                                FirebaseStorage storage = FirebaseStorage.getInstance();
+                                                StorageReference Uploader = storage.getReference().child("Profile_Photo/" + resultUri.getLastPathSegment());
 
-                                                    NewUserHelper newUserHelper = new NewUserHelper(Firstname, Lastname, Emailid, Mobileno, Genderbutton, Birthdate, Password, uri.toString());
-                                                    root.child(Mobileno).setValue(newUserHelper);
+                                                Uploader.putFile(resultUri)
+                                                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                                            @Override
+                                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                                Uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                                    @Override
+                                                                    public void onSuccess(Uri uri) {
 
-                                                    // Store in Cloud database
+                                                                        // Storedata in Realtime Database
+                                                                        FirebaseDatabase db = FirebaseDatabase.getInstance();
+                                                                        DatabaseReference root = db.getReference("Patients");
+                                                                        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                                                        NewUserHelper newUserHelper = new NewUserHelper(Firstname, Lastname, Emailid, Mobileno, Genderbutton, Birthdate, Password, uri.toString(),user.toString());
+                                                                        root.child(Mobileno).setValue(newUserHelper);
 
-                                                    //user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                                                        // Store in Cloud database
 
-                                                   /* userinfo.put("User_ID", user.getUid());*/
+                                                                        //user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                                                                        /* userinfo.put("User_ID", user.getUid());*/
 
 
-                                                    Toast.makeText(SignUpScreen.this, "Registration Successfull", Toast.LENGTH_LONG).show();
+                                                                        Toast.makeText(SignUpScreen.this, "Registration Successfull", Toast.LENGTH_LONG).show();
 
-                                                    Intent i = new Intent(SignUpScreen.this, LogInScreen.class);
-                                                    startActivity(i);
-                                                    finish();
-                                                }
-                                            });
+                                                                        Intent i = new Intent(SignUpScreen.this, LogInScreen.class);
+                                                                        startActivity(i);
+                                                                        finish();
+                                                                    }
+                                                                });
+                                                            }
+                                                        })
+                                                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                                            @Override
+                                                            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                                                                float percentage = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                                                                dialog.setMessage("Uploading " + (int) percentage + " %");
+                                                            }
+                                                        });
+                                            } else {
+                                                dialog.dismiss();
+                                                dialog1.dismiss();
+                                                Toast.makeText(SignUpScreen.this, "Please Select Image", Toast.LENGTH_LONG).show();
+                                            }
                                         }
-                                    })
-                                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                                            float percentage = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
-                                            dialog.setMessage("Uploading " + (int) percentage + " %");
-                                        }
-                                    });
-                        } else {
-                            dialog.dismiss();
-                            dialog1.dismiss();
-                            Toast.makeText(SignUpScreen.this, "Please Select Image", Toast.LENGTH_LONG).show();
-                        }
+                                        else {
 
+                                        }
+                                    }
+                                });
                     }
 
                 }

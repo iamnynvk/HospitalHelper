@@ -96,7 +96,7 @@
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
                     android:backgroundTint="@color/similarwhite"
-                    android:text="vekariyanayan2000@gmail.com"
+                    android:text=""
                     android:textColor="@color/title_color" />
             </RelativeLayout>
 
@@ -131,7 +131,7 @@
                     android:fontFamily="@font/montserratmedium"
                     android:padding="@dimen/size_10dp"
                     android:backgroundTint="@color/similarwhite"
-                    android:text="nayan12345"
+                    android:text=""
                     android:textColor="@color/title_color" />
 
                 <TextView
@@ -171,7 +171,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/size_10dp"
+                android:layout_marginTop="@dimen/size_15dp"
                 android:gravity="center"
                 android:layout_below="@+id/loginbutton_relative"
                 android:padding="10dp">
@@ -183,7 +183,7 @@
                     android:text="Don't have an account?"
                     android:textColor="@color/text_color"
                     android:fontFamily="@font/montserratmedium"
-                    android:textSize="@dimen/size_12dp" />
+                    android:textSize="@dimen/size_11dp" />
 
                 <TextView
                     android:id="@+id/signup_link"
@@ -192,7 +192,7 @@
                     android:text="Sign Up"
                     android:fontFamily="@font/montserratmedium"
                     android:textColor="@color/link_color"
-                    android:textSize="@dimen/size_12dp" />
+                    android:textSize="@dimen/size_11dp" />
             </LinearLayout>
 
            <!-- <RelativeLayout

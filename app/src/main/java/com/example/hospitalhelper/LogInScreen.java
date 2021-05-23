@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.security.keystore.UserNotAuthenticatedException;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +40,8 @@ public class LogInScreen extends AppCompatActivity {
     ProgressDialog mprogress;
     int counter = 0;
 
-    FirebaseAuth mAuth;
 
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,7 @@ public class LogInScreen extends AppCompatActivity {
                 Log.e("email","===>"+email_edittext.getText());
                 Log.e("Passsword","===>"+password_edittext.getText());
 
-                validate(email_edittext.getText().toString(), password_edittext.getText().toString());
+                UserAuthenticate();
                 mprogress.setMessage("Loading...");
                 mprogress.show();
             }
@@ -85,11 +87,63 @@ public class LogInScreen extends AppCompatActivity {
 
     }
 
-    private void validate(final String UserEmail, String UserPassword) {
-        String email = UserEmail;
-        String password = UserPassword;
+    private void UserAuthenticate() {
+        final String emailid=email_edittext.getText().toString();
+        final String password = password_edittext.getText().toString();
 
+        if(validate())
+        {
+            mAuth = FirebaseAuth.getInstance();
 
+            mAuth.createUserWithEmailAndPassword(emailid,password)
+                    .addOnCompleteListener(LogInScreen.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful())
+                            {
+                             Intent intent = new Intent(LogInScreen.this,HomeScreen.class);
+                             startActivity(intent);
+                            }
+                            else {
+                                mprogress.dismiss();
+                                password_edittext.setText("");
+                                Toast.makeText(getApplicationContext(),"Invalid email/password",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+        }
+        else {
+
+        }
+    }
+
+    private boolean validate() {
+        Boolean result = false;
+
+        final String emailid=email_edittext.getText().toString();
+        final String password = password_edittext.getText().toString();
+        if (!validateEmailAddress(email_edittext)){
+            Toast.makeText(this,"Please Enter Email ID", Toast.LENGTH_SHORT).show();
+        }
+        else if(password.length()==0)
+        {
+            Toast.makeText(this,"Please Enter Password", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            return true;
+        }
+        return result;
+    }
+    private boolean validateEmailAddress(EditText email) {
+        String emailInput = email_edittext.getText().toString();
+
+        if(!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches())
+        {
+            return true;
+        }
+        else {
+            return  false;
+        }
     }
 
     @Override

@@ -158,8 +158,6 @@ public class SignUpScreen extends AppCompatActivity{
             }catch (Exception ex){
 
             }
-        }else {
-
         }
     }
 
@@ -255,9 +253,6 @@ public class SignUpScreen extends AppCompatActivity{
                                                 dialog1.dismiss();
                                                 Toast.makeText(SignUpScreen.this, "Please Select Image", Toast.LENGTH_LONG).show();
                                             }
-                                        }
-                                        else {
-
                                         }
                                     }
                                 });

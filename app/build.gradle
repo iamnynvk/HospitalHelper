@@ -63,4 +63,8 @@ dependencies {
     // Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.0.1';
     implementation 'com.karumi:dexter:6.2.2'
+
+    //SliderView
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.github.smarteist:autoimageslider:1.3.9-appcompat'
 }

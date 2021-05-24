@@ -106,9 +106,6 @@ public class SignUpScreen extends AppCompatActivity{
         Gallary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent,"Select Profile Photo"),1);*/
                 Dexter.withContext(SignUpScreen.this)
                         .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                         .withListener(new PermissionListener() {
@@ -181,11 +178,10 @@ public class SignUpScreen extends AppCompatActivity{
             dialog1.show();
 
             Query checkuser = FirebaseDatabase.getInstance().getReference("Patients").child(Mobileno);
-            checkuser.addListenerForSingleValueEvent(new ValueEventListener() {
+            checkuser.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()){
-
                         MobileNo.setError("such user exist!");
                         MobileNo.requestFocus();
                         dialog1.dismiss();
@@ -201,6 +197,22 @@ public class SignUpScreen extends AppCompatActivity{
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if(task.isSuccessful())
                                         {
+                                            // Send Verification Link
+
+                                            final FirebaseUser emailverify = mAuth.getCurrentUser();
+                                            emailverify.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(SignUpScreen.this, "Varification Email has been send", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.e("Email not send !", "===>" + e.getMessage());
+                                                }
+
+                                            });
+
                                             ProgressDialog dialog = new ProgressDialog(SignUpScreen.this);
                                             dialog.setTitle("File Uploader");
                                             dialog.show();

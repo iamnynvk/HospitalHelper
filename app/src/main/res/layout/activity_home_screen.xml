@@ -1,15 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeScreen">
+    tools:context=".HomeScreen"
+    android:background="@color/colorPrimary"
+    tools:openDrawer="end">
 
-    <TextView
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        android:layout_gravity="start" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/size_25dp"
-        android:text="homescreen"/>
+        android:layout_height="match_parent">
 
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/main_relative"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_245dp"
+                android:background="@drawable/background">
+
+            <RelativeLayout
+                android:id="@+id/toolbar_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="?attr/actionBarTheme"
+                    app:navigationIcon="@drawable/baseline_menu"/>
+            </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/greeting_time_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/toolbar_relative"
+                    android:text="Good Evening"
+                    android:textColor="@color/title_color"
+                    android:layout_marginStart="@dimen/size_25dp"
+                    android:layout_marginTop="@dimen/size_10dp"
+                    android:textSize="@dimen/size_20dp"
+                    android:fontFamily="@font/montserratmedium"/>
+
+                <TextView
+                    android:id="@+id/username_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/greeting_time_textview"
+                    android:layout_marginStart="@dimen/size_25dp"
+                    android:text="Nayan"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/size_20dp"
+                    android:fontFamily="@font/montserratmedium"
+                    android:layout_marginTop="@dimen/size_2dp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/size_60dp"
+                    android:layout_height="@dimen/size_60dp"
+                    android:src="@drawable/profile_photo"
+                    android:layout_below="@+id/toolbar_relative"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="@dimen/size_20dp"
+                    android:layout_marginTop="@dimen/size_10dp"/>
+
+                <TextView
+                    android:id="@+id/about_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/username_textview"
+                    android:layout_marginStart="@dimen/size_25dp"
+                    android:text="Your target for today is to keep positive mindset\nand smile to everyone you meet."
+                    android:textColor="@color/light_poison_color"
+                    android:textSize="@dimen/size_10dp"
+                    android:lineSpacingExtra="5dp"
+                    android:fontFamily="@font/montserratmedium"
+                    android:layout_marginTop="@dimen/size_22dp" />
+
+                <RelativeLayout
+                    android:id="@+id/verifyemailrelative"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_35dp"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/size_10dp"
+                    android:layout_below="@+id/about_textview">
+
+                    <TextView
+                        android:id="@+id/verifyemailtv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_5dp"
+                        android:layout_marginRight="@dimen/size_60dp"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:text="Verify Email Address"
+                        android:layout_marginLeft="@dimen/size_10dp"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/size_13dp"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/verifyemailbutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="@dimen/size_200dp"
+                        android:layout_marginTop="@dimen/size_2dp"
+                        android:background="@drawable/button_style_five"
+                        android:fontFamily="@font/montserratbold"
+                        android:text="Verify"
+                        android:textColor="@color/intro_desription_color"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/profile_button"
+                    android:layout_width="@dimen/size_150dp"
+                    android:layout_height="@dimen/size_25dp"
+                    android:layout_below="@+id/verifyemailrelative"
+                    android:text="VIEW YOUR PROFILE"
+                    android:background="@drawable/button_style_six"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="@dimen/size_25dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/blood_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_20dp"
+                android:layout_below="@+id/main_relative">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Do you want to Donate or Request Blood ?"
+                    android:textColor="@color/title_color"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/size_18dp"
+                    android:fontFamily="@font/montserratmedium"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/blood_request_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/blood_relative"
+                android:layout_marginStart="@dimen/size_18dp"
+                android:layout_marginTop="@dimen/size_20dp">
+
+                <ImageView
+                    android:layout_width="@dimen/size_50dp"
+                    android:layout_height="@dimen/size_50dp"
+                    android:src="@drawable/heart"/>
+
+                <TextView
+                    android:id="@+id/blood_request_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_60dp"
+                    android:textColor="@color/title_color"
+                    android:text="Blood Request"
+                    android:layout_marginTop="@dimen/size_4dp"
+                    android:fontFamily="@font/montserratmedium"/>
+
+                <TextView
+                    android:id="@+id/blood_bank_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/blood_request_textview"
+                    android:layout_marginLeft="@dimen/size_60dp"
+                    android:textColor="@color/intro_desription_color"
+                    android:text="Please once check blood bank"
+                    android:textSize="@dimen/size_9dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:fontFamily="@font/montserratregular"/>
+
+                <Button
+                    android:id="@+id/blood_request_button"
+                    android:layout_width="@dimen/size_70dp"
+                    android:layout_height="@dimen/size_20dp"
+                    android:text="Request"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/size_10dp"
+                    android:layout_marginTop="@dimen/size_5dp"
+                    android:background="@drawable/button_style_seven"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/lines"
+                    android:layout_below="@+id/blood_bank_textview"
+                    android:layout_marginTop="@dimen/size_20dp"
+                    android:layout_marginRight="@dimen/size_18dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/blood_donate_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/blood_request_relative"
+                android:layout_marginStart="@dimen/size_18dp"
+                android:layout_marginTop="@dimen/size_20dp">
+
+                <ImageView
+                    android:layout_width="@dimen/size_50dp"
+                    android:layout_height="@dimen/size_50dp"
+                    android:src="@drawable/health"/>
+
+                <TextView
+                    android:id="@+id/blood_donnate_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_60dp"
+                    android:textColor="@color/title_color"
+                    android:text="Blood Donate"
+                    android:layout_marginTop="@dimen/size_4dp"
+                    android:fontFamily="@font/montserratmedium"/>
+
+                <TextView
+                    android:id="@+id/blood_doner_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/blood_donnate_textview"
+                    android:layout_marginLeft="@dimen/size_60dp"
+                    android:textColor="@color/intro_desription_color"
+                    android:text="Don't forget to bring the list with you"
+                    android:textSize="@dimen/size_9dp"
+                    android:layout_marginTop="@dimen/size_8dp"
+                    android:fontFamily="@font/montserratregular"/>
+
+                <Button
+                    android:id="@+id/blood_donate_button"
+                    android:layout_width="@dimen/size_70dp"
+                    android:layout_height="@dimen/size_20dp"
+                    android:text="Donate"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/size_10dp"
+                    android:layout_marginTop="@dimen/size_5dp"
+                    android:background="@drawable/button_style_eight"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/lines"
+                    android:layout_below="@+id/blood_doner_textview"
+                    android:layout_marginTop="@dimen/size_20dp"
+                    android:layout_marginRight="@dimen/size_18dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/feed_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_20dp"
+                android:layout_below="@+id/blood_donate_relative">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Feeds"
+                    android:textColor="@color/title_color"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/size_18dp"
+                    android:fontFamily="@font/montserratmedium"/>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

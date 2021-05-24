@@ -221,15 +221,12 @@ public class SignUpScreen extends AppCompatActivity{
                                                                         // Storedata in Realtime Database
                                                                         FirebaseDatabase db = FirebaseDatabase.getInstance();
                                                                         DatabaseReference root = db.getReference("Patients");
-                                                                        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                                                        NewUserHelper newUserHelper = new NewUserHelper(Firstname, Lastname, Emailid, Mobileno, Genderbutton, Birthdate, Password, uri.toString(),user.toString());
+
+                                                                        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                                                        // final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                                                        NewUserHelper newUserHelper = new NewUserHelper(Firstname, Lastname, Emailid, Mobileno, Genderbutton, Birthdate, Password, uri.toString(),user);
                                                                         root.child(Mobileno).setValue(newUserHelper);
-
-                                                                        // Store in Cloud database
-
-                                                                        //user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-                                                                        /* userinfo.put("User_ID", user.getUid());*/
 
 
                                                                         Toast.makeText(SignUpScreen.this, "Registration Successfull", Toast.LENGTH_LONG).show();

@@ -38,7 +38,6 @@ public class ForgotPasswordScreen extends AppCompatActivity {
         forgot_btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 resetpassword();
             }
         });
@@ -74,7 +73,6 @@ public class ForgotPasswordScreen extends AppCompatActivity {
                 else
                     {
                         Toast.makeText(ForgotPasswordScreen.this,"Try again! Something wrong happened!",Toast.LENGTH_LONG).show();
-
                     }
             }
         });

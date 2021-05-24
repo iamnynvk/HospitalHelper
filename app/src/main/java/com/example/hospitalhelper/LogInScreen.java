@@ -32,7 +32,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LogInScreen extends AppCompatActivity {
 
-    EditText email_edittext,password_edittext;
+    EditText email_edittext;
+    EditText password_edittext;
     TextView forgot_pass;
     Button login_button;
     TextView signup_link;
@@ -40,7 +41,7 @@ public class LogInScreen extends AppCompatActivity {
     int counter = 0;
 
 
-     private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,30 +76,35 @@ public class LogInScreen extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("email","===>"+email_edittext.getText());
+                Log.e("Passsword","===>"+password_edittext.getText());
+
                 UserAuthenticate();
-                mprogress.setMessage("Loading...");
-                mprogress.show();
             }
         });
 
     }
 
     private void UserAuthenticate() {
+        final String emailid=email_edittext.getText().toString();
+        final String password = password_edittext.getText().toString();
 
-        if(Validate())
+        mprogress.setMessage("Loading...");
+        mprogress.show();
+        if(validate())
         {
-            final String emailid=email_edittext.getText().toString();
-            final String password = password_edittext.getText().toString();
-
             mAuth = FirebaseAuth.getInstance();
+
             mAuth.signInWithEmailAndPassword(emailid,password)
                     .addOnCompleteListener(LogInScreen.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful())
                             {
-                             Intent intent = new Intent(LogInScreen.this,HomeScreen.class);
-                             startActivity(intent);
+                                Utility.setIsLogin(getApplicationContext(),"isLogin");
+                                Intent intent = new Intent(LogInScreen.this,HomeScreen.class);
+                                startActivity(intent);
+                                finish();
                             }
                             else {
                                 mprogress.dismiss();
@@ -110,17 +116,16 @@ public class LogInScreen extends AppCompatActivity {
         }
     }
 
-    private boolean Validate() {
+    private boolean validate() {
         Boolean result = false;
 
-         //final String email=email_edittext.getText().toString();
-         final String password = password_edittext.getText().toString();
+        final String emailid=email_edittext.getText().toString();
+        final String password = password_edittext.getText().toString();
         if (!validateEmailAddress(email_edittext)){
             Toast.makeText(this,"Please Enter Email ID", Toast.LENGTH_SHORT).show();
         }
         else if(password.length()==0)
         {
-
             Toast.makeText(this,"Please Enter Password", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -128,8 +133,7 @@ public class LogInScreen extends AppCompatActivity {
         }
         return result;
     }
-
-    private boolean validateEmailAddress(EditText email_edittext) {
+    private boolean validateEmailAddress(EditText email) {
         String emailInput = email_edittext.getText().toString();
 
         if(!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches())

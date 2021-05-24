@@ -32,8 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LogInScreen extends AppCompatActivity {
 
-    EditText email_edittext;
-    EditText password_edittext;
+    EditText email_edittext,password_edittext;
     TextView forgot_pass;
     Button login_button;
     TextView signup_link;
@@ -41,7 +40,7 @@ public class LogInScreen extends AppCompatActivity {
     int counter = 0;
 
 
-    private FirebaseAuth mAuth;
+     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +75,6 @@ public class LogInScreen extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("email","===>"+email_edittext.getText());
-                Log.e("Passsword","===>"+password_edittext.getText());
-
                 UserAuthenticate();
                 mprogress.setMessage("Loading...");
                 mprogress.show();
@@ -88,14 +84,14 @@ public class LogInScreen extends AppCompatActivity {
     }
 
     private void UserAuthenticate() {
-        final String emailid=email_edittext.getText().toString();
-        final String password = password_edittext.getText().toString();
 
-        if(validate())
+        if(Validate())
         {
-            mAuth = FirebaseAuth.getInstance();
+            final String emailid=email_edittext.getText().toString();
+            final String password = password_edittext.getText().toString();
 
-            mAuth.createUserWithEmailAndPassword(emailid,password)
+            mAuth = FirebaseAuth.getInstance();
+            mAuth.signInWithEmailAndPassword(emailid,password)
                     .addOnCompleteListener(LogInScreen.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -112,21 +108,19 @@ public class LogInScreen extends AppCompatActivity {
                         }
                     });
         }
-        else {
-
-        }
     }
 
-    private boolean validate() {
+    private boolean Validate() {
         Boolean result = false;
 
-        final String emailid=email_edittext.getText().toString();
-        final String password = password_edittext.getText().toString();
+         //final String email=email_edittext.getText().toString();
+         final String password = password_edittext.getText().toString();
         if (!validateEmailAddress(email_edittext)){
             Toast.makeText(this,"Please Enter Email ID", Toast.LENGTH_SHORT).show();
         }
         else if(password.length()==0)
         {
+
             Toast.makeText(this,"Please Enter Password", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -134,7 +128,8 @@ public class LogInScreen extends AppCompatActivity {
         }
         return result;
     }
-    private boolean validateEmailAddress(EditText email) {
+
+    private boolean validateEmailAddress(EditText email_edittext) {
         String emailInput = email_edittext.getText().toString();
 
         if(!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches())

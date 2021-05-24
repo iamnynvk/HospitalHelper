@@ -38,6 +38,8 @@ dependencies {
     // Firebase Realtime database
     implementation 'com.google.firebase:firebase-database:20.0.0'
 
+    // Declare the dependency for the Firebase Authentication library
+    implementation 'com.google.firebase:firebase-auth'
     // Firebase storage
     implementation 'com.google.firebase:firebase-storage:20.0.0'
 

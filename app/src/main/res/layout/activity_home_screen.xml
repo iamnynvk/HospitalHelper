@@ -66,6 +66,7 @@
                     android:layout_marginTop="@dimen/size_2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileView"
                     android:layout_width="@dimen/size_60dp"
                     android:layout_height="@dimen/size_60dp"
                     android:src="@drawable/profile_photo"

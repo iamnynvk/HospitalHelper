@@ -15,7 +15,10 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Banner_Three"></activity>
+        <activity android:name=".ProfileView"></activity>
+        <activity android:name=".BloodDonate" />
+        <activity android:name=".BloodRequest" />
+        <activity android:name=".Banner_Three" />
         <activity android:name=".Banner_Two" />
         <activity android:name=".Banner_One" />
         <activity android:name=".ForgotPasswordScreen" />

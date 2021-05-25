@@ -119,10 +119,15 @@ public class LogInScreen extends AppCompatActivity {
     private boolean validate() {
         Boolean result = false;
 
-        final String emailid=email_edittext.getText().toString();
+        final String email=email_edittext.getText().toString();
         final String password = password_edittext.getText().toString();
-        if (!validateEmailAddress(email_edittext)){
+        if(email.isEmpty())
+        {
             Toast.makeText(this,"Please Enter Email ID", Toast.LENGTH_SHORT).show();
+        }
+        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        {
+            Toast.makeText(this,"Please provide valid email", Toast.LENGTH_SHORT).show();
         }
         else if(password.length()==0)
         {
@@ -132,17 +137,6 @@ public class LogInScreen extends AppCompatActivity {
             return true;
         }
         return result;
-    }
-    private boolean validateEmailAddress(EditText email) {
-        String emailInput = email_edittext.getText().toString();
-
-        if(!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches())
-        {
-            return true;
-        }
-        else {
-            return  false;
-        }
     }
 
     @Override

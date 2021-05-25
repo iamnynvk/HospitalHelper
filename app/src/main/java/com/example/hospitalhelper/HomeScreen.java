@@ -33,7 +33,8 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_home_screen);
 
         sliderView = findViewById(R.id.imageSlider);
-
+        // Test Git
+        //A host-to-network configuration is analogous to connecting a computer to a local area network. This type provides access to an enterprise network, such as an intranet. This may be employed for telecommuting workers who need access to private resources, or to enable a mobile worker to access important tools without exposing them to the public Internet.
 
         // Set ImageSlider
         setImageSlider();

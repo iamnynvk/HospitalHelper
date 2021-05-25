@@ -2,20 +2,16 @@ package com.example.hospitalhelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ViewGroup;
 
-import com.denzcoskun.imageslider.ImageSlider;
 import com.example.hospitalhelper.Adapter.SliderAdapter;
 import com.example.hospitalhelper.Data_Holder.ImageSliderItem;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
-import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,15 +27,17 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-
         sliderView = findViewById(R.id.imageSlider);
 
 
         // Set ImageSlider
-        setImageSlider();
+        ImageSliderSection();
+
 
     }
-    private void setImageSlider() {
+
+    private void ImageSliderSection() {
+
         bannerSlider = new ArrayList<>();
         ImageSliderItem sliderItem = new ImageSliderItem();
 
@@ -49,7 +47,7 @@ public class HomeScreen extends AppCompatActivity {
             bannerSlider.add(sliderItem);
         }
 
-        adapter = new SliderAdapter(getApplicationContext(), bannerSlider);
+        adapter = new SliderAdapter(HomeScreen.this, bannerSlider);
         sliderView.setSliderAdapter(adapter);
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
@@ -68,5 +66,4 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
     }
-
 }

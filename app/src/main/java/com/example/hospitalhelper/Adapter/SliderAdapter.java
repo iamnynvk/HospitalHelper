@@ -1,5 +1,6 @@
 package com.example.hospitalhelper.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -22,11 +23,11 @@ import java.util.List;
 
 public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapterVH> {
 
-    private Context context;
+    private Activity activity;
     private List<ImageSliderItem> imageSliderItems = new ArrayList<>();
 
-    public SliderAdapter(Context context, List<ImageSliderItem> imageSliderItems) {
-        this.context = context;
+    public SliderAdapter(Activity activity, List<ImageSliderItem> imageSliderItems) {
+        this.activity = activity;
         this.imageSliderItems = imageSliderItems;
     }
 
@@ -72,16 +73,16 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
             @Override
             public void onClick(View v) {
                 if (position == 0){
-                    Intent i = new Intent(context,Banner_One.class);
-                    context.startActivity(i);
+                    Intent i = new Intent(activity,Banner_One.class);
+                    activity.startActivity(i);
                 }
                 else if(position == 1){
-                    Intent i = new Intent(context,Banner_Two.class);
-                    context.startActivity(i);
+                    Intent i = new Intent(activity,Banner_Two.class);
+                    activity.startActivity(i);
                 }
                 else if(position == 2){
-                    Intent i = new Intent(context,Banner_Three.class);
-                    context.startActivity(i);
+                    Intent i = new Intent(activity,Banner_Three.class);
+                    activity.startActivity(i);
                 }
             }
         });

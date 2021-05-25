@@ -40,7 +40,6 @@ public class LogInScreen extends AppCompatActivity {
     ProgressDialog mprogress;
     int counter = 0;
 
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -102,6 +101,7 @@ public class LogInScreen extends AppCompatActivity {
                             if (task.isSuccessful())
                             {
                                 Utility.setIsLogin(getApplicationContext(),"isLogin");
+                                mprogress.dismiss();
                                 Intent intent = new Intent(LogInScreen.this,HomeScreen.class);
                                 startActivity(intent);
                                 finish();

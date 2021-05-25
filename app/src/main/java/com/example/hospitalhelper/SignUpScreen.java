@@ -9,10 +9,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -37,7 +35,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -50,9 +47,6 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.InputStream;
-import java.text.BreakIterator;
-import java.util.HashMap;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -71,9 +65,9 @@ public class SignUpScreen extends AppCompatActivity{
 
     RadioGroup GenderButtonGroup;
     RadioButton GenderButton;
+    boolean result = false;
 
     Uri resultUri;
-    FirebaseFirestore clouddatabase;
     private FirebaseAuth mAuth;
 
     @Override
@@ -93,7 +87,6 @@ public class SignUpScreen extends AppCompatActivity{
         Register = (Button) findViewById(R.id.Register_button);
 
         GenderButtonGroup = (RadioGroup) findViewById(R.id.signup_genderbutton_group);
-
 
         // Action Here...
         BackButton.setOnClickListener(new View.OnClickListener() {
@@ -137,12 +130,6 @@ public class SignUpScreen extends AppCompatActivity{
         });
     }
 
-    public void onBackPressed(){
-        Intent i = new Intent(SignUpScreen.this,LogInScreen.class);
-        startActivity(i);
-        finish();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -159,6 +146,7 @@ public class SignUpScreen extends AppCompatActivity{
     }
 
     private void UploadDataOnFirebase() {
+
         if (Validate()) {
 
             int genderselecter = GenderButtonGroup.getCheckedRadioButtonId();
@@ -172,110 +160,110 @@ public class SignUpScreen extends AppCompatActivity{
             final String Birthdate = BirthDate.getText().toString().trim();
             final String Password = Passwords.getText().toString().trim();
 
-            /*ProgressDialog dialog1 = new ProgressDialog(SignUpScreen.this);
+            ProgressDialog dialog1 = new ProgressDialog(SignUpScreen.this);
             dialog1.setMessage("Please wait check in Server" +
                     " You are already exist or not!");
             dialog1.show();
 
-           Query checkuser = FirebaseDatabase.getInstance().getReference("Patients").child(Mobileno);
-            checkuser.addValueEventListener(new ValueEventListener() {
+            // Mobile No check Exist or not
+            Query quary = FirebaseDatabase.getInstance().getReference().child("Patients").orderByChild("mobileno").equalTo(MobileNo.getText().toString());
+
+            quary.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()){
+                        Log.e("Mobile NO snapahot","IF>");
                         MobileNo.setError("such user exist!");
                         MobileNo.requestFocus();
                         dialog1.dismiss();
+                    }else{
+                        Log.e("Mobile NO snapahot","ELSE==>");
+                        mAuth = FirebaseAuth.getInstance();
 
-                    }
-                    else{*/
-
-            mAuth = FirebaseAuth.getInstance();
-
-            mAuth.createUserWithEmailAndPassword(Emailid, Password)
-                    .addOnCompleteListener(SignUpScreen.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Send Verification Link
-
-                                final FirebaseUser emailverify = mAuth.getCurrentUser();
-                                emailverify.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        mAuth.createUserWithEmailAndPassword(Emailid, Password)
+                                .addOnCompleteListener(SignUpScreen.this, new OnCompleteListener<AuthResult>() {
                                     @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(SignUpScreen.this, "Varification Email has been send", Toast.LENGTH_SHORT).show();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.e("Email not send !", "===>" + e.getMessage());
-                                    }
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            // Send Verification Link
 
-                                });
-
-                                ProgressDialog dialog = new ProgressDialog(SignUpScreen.this);
-                                dialog.setTitle("File Uploader");
-                                dialog.show();
-
-                                if (resultUri != null) {
-
-                                    FirebaseStorage storage = FirebaseStorage.getInstance();
-                                    StorageReference Uploader = storage.getReference().child("Profile_Photo/" + resultUri.getLastPathSegment());
-
-                                    Uploader.putFile(resultUri)
-                                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                            final FirebaseUser emailverify = mAuth.getCurrentUser();
+                                            emailverify.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
-                                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                                    Uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                        @Override
-                                                        public void onSuccess(Uri uri) {
-
-                                                            // Storedata in Realtime Database
-                                                            FirebaseDatabase db = FirebaseDatabase.getInstance();
-                                                            DatabaseReference root = db.getReference("Patients");
-
-                                                            String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-                                                            NewUserHelper newUserHelper = new NewUserHelper(Firstname, Lastname, Emailid, Mobileno, Genderbutton, Birthdate, Password, uri.toString(), user);
-                                                            root.child(user).setValue(newUserHelper);
-
-
-                                                            Toast.makeText(SignUpScreen.this, "Registration Successfull", Toast.LENGTH_LONG).show();
-
-                                                            Intent i = new Intent(SignUpScreen.this, LogInScreen.class);
-                                                            startActivity(i);
-                                                            finish();
-                                                        }
-                                                    });
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(SignUpScreen.this, "Varification Email has been send", Toast.LENGTH_SHORT).show();
                                                 }
-                                            })
-                                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                            }).addOnFailureListener(new OnFailureListener() {
                                                 @Override
-                                                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                                                    float percentage = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
-                                                    dialog.setMessage("Uploading " + (int) percentage + " %");
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.e("Email not send !", "===>" + e.getMessage());
                                                 }
+
                                             });
-                                } else {
-                                    dialog.dismiss();
-                                    Toast.makeText(SignUpScreen.this, "Please Select Image", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        }
-                    });
-                  /*  }
 
+                                            ProgressDialog dialog = new ProgressDialog(SignUpScreen.this);
+                                            dialog.setTitle("File Uploader");
+                                            dialog.show();
+
+                                            if (resultUri != null) {
+
+                                                FirebaseStorage storage = FirebaseStorage.getInstance();
+                                                StorageReference Uploader = storage.getReference().child("Profile_Photo/" + resultUri.getLastPathSegment());
+
+                                                Uploader.putFile(resultUri)
+                                                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                                            @Override
+                                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                                Uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                                    @Override
+                                                                    public void onSuccess(Uri uri) {
+
+                                                                        // Storedata in Realtime Database
+                                                                        FirebaseDatabase db = FirebaseDatabase.getInstance();
+                                                                        DatabaseReference root = db.getReference("Patients");
+
+                                                                        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                                                                        NewUserHelper newUserHelper = new NewUserHelper(Firstname, Lastname, Emailid, Mobileno, Genderbutton, Birthdate, Password, uri.toString(), user);
+                                                                        root.child(user).setValue(newUserHelper);
+
+
+                                                                        Toast.makeText(SignUpScreen.this, "Registration Successfull", Toast.LENGTH_LONG).show();
+
+                                                                        Intent i = new Intent(SignUpScreen.this, LogInScreen.class);
+                                                                        startActivity(i);
+                                                                        finish();
+                                                                    }
+                                                                });
+                                                            }
+                                                        })
+                                                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                                            @Override
+                                                            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                                                                float percentage = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                                                                dialog.setMessage("Uploading " + (int) percentage + " %");
+                                                            }
+                                                        });
+                                            } else {
+                                                dialog.dismiss();
+                                                Toast.makeText(SignUpScreen.this, "Please Select Image", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    }
+                                });
+                    }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-            });*/
+            });
         }
         }
 
     private boolean Validate() {
-        Boolean result = false;
+        boolean result = false;
 
         String firstname = FirstName.getText().toString().trim();
         String lastname = LastName.getText().toString().trim();
@@ -283,6 +271,8 @@ public class SignUpScreen extends AppCompatActivity{
         String mobileno = MobileNo.getText().toString().trim();
         String birthdate = BirthDate.getText().toString().trim();
         String password = Passwords.getText().toString().trim();
+
+
 
         if (firstname.length() == 0){
             Toast.makeText(this,"Please Enter First Name", Toast.LENGTH_SHORT).show();
@@ -308,6 +298,7 @@ public class SignUpScreen extends AppCompatActivity{
         else {
             result = true;
         }
+
         return result;
     }
 
@@ -321,5 +312,11 @@ public class SignUpScreen extends AppCompatActivity{
         else {
             return  false;
         }
+    }
+
+    public void onBackPressed(){
+        Intent i = new Intent(SignUpScreen.this,LogInScreen.class);
+        startActivity(i);
+        finish();
     }
 }

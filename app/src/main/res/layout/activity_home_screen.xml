@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="?attr/actionBarTheme"
-                    app:navigationIcon="@drawable/baseline_menu"/>
+                    app:navigationIcon="@drawable/baseline_menu" />
             </RelativeLayout>
 
                 <TextView
@@ -59,13 +59,14 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/greeting_time_textview"
                     android:layout_marginStart="@dimen/size_25dp"
-                    android:text="Nayan"
+                    android:text="User"
                     android:textColor="@color/title_color"
                     android:textSize="@dimen/size_20dp"
                     android:fontFamily="@font/montserratmedium"
                     android:layout_marginTop="@dimen/size_2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileView"
                     android:layout_width="@dimen/size_60dp"
                     android:layout_height="@dimen/size_60dp"
                     android:src="@drawable/profile_photo"

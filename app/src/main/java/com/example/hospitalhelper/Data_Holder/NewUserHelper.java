@@ -15,6 +15,10 @@ public class NewUserHelper {
         this.user = user;
     }
 
+    public NewUserHelper() {
+
+    }
+
     public String getFirstname() {
         return Firstname;
     }

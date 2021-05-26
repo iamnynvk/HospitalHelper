@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/home"
+                android:icon="@drawable/home"
+                android:title="Home"/>
+
+            <item
+                android:id="@+id/profile"
+                android:icon="@drawable/profile"
+                android:title="Profile"/>
+
+            <item
+                android:id="@+id/doctor"
+                android:icon="@drawable/doctor_vector"
+                android:title="Doctor"/>
+
+            <item
+                android:id="@+id/blood_request"
+                android:icon="@drawable/blood_request"
+                android:title="Blood Request"/>
+
+            <item
+                android:id="@+id/blood_donate"
+                android:icon="@drawable/blood_donate"
+                android:title="Blood Donate"/>
+
+            <item
+                android:id="@+id/facilities"
+                android:icon="@drawable/facilities"
+                android:title="Facilities"/>
+
+            <item
+                android:id="@+id/videos"
+                android:icon="@drawable/videos"
+                android:title="Videos"/>
+
+            <item
+                android:id="@+id/contact_us"
+                android:icon="@drawable/contect_us"
+                android:title="Contact Us"/>
+
+            <item
+                android:id="@+id/about_us"
+                android:icon="@drawable/about_us"
+                android:title="About Us"/>
+
+    </group>
+</menu>
+
+
+

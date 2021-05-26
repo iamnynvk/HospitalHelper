@@ -17,25 +17,36 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
+                android:id="@+id/back_button_relative_blood"
+                android:layout_width="@dimen/size_30dp"
+                android:layout_height="@dimen/size_30dp"
+                android:layout_marginTop="@dimen/size_15dp"
+                android:layout_marginLeft="@dimen/size_18dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_arrow_back" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/blood_request_relative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_70dp"
-                android:layout_marginRight="@dimen/size_60dp"
-                android:gravity="center">
+                android:layout_below="@+id/back_button_relative_blood"
+                android:layout_marginStart="@dimen/size_23dp"
+                android:layout_marginTop="@dimen/size_10dp">
 
                 <TextView
                     android:id="@+id/blood_request_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/toolbar_relative"
-                    android:layout_marginStart="@dimen/size_5dp"
-                    android:layout_marginTop="@dimen/size_10dp"
-                    android:layout_marginRight="@dimen/size_30dp"
                     android:fontFamily="@font/montserratmedium"
                     android:text="Blood Request"
                     android:textColor="@color/title_color"
-                    android:textSize="@dimen/size_26dp"
+                    android:textSize="@dimen/size_25dp"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -68,7 +79,7 @@
                     android:background="@drawable/edit_text_style"
                     android:backgroundTint="@color/similarwhite"
                     android:fontFamily="@font/montserratmedium"
-                    android:hint="Rutvik M Patel"
+                    android:hint="Marlin N Patterson"
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
                     android:text=""
@@ -182,7 +193,10 @@
                     android:fontFamily="@font/montserratmedium"
                     android:inputType="number"
                     android:padding="10dp"
+                    android:maxLength="2"
                     android:text=""
+                    android:hint="Ex.25"
+                    android:textColorHint="@color/tab_indicator_grey"
                     android:textColor="@color/title_color"
                     />
             </RelativeLayout>
@@ -266,7 +280,7 @@
                     android:textSize="@dimen/size_12dp" />
 
                 <EditText
-                    android:id="@+id/signup_lastname_edittext"
+                    android:id="@+id/blood_lastname_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_40dp"
                     android:layout_below="@id/blood_group_textview"
@@ -277,26 +291,30 @@
                     android:fontFamily="@font/montserratmedium"
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
+                    android:maxLength="2"
+                    android:hint="Ex.A+"
+                    android:textColorHint="@color/tab_indicator_grey"
                     android:backgroundTint="@color/similarwhite"
                     android:text=""
                     android:textColor="@color/title_color" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/submit_button_relative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/bloodGroup_relative"
-                android:layout_marginTop="@dimen/size_22dp"
-                android:layout_marginBottom="@dimen/size_20dp">
+                android:layout_marginTop="@dimen/size_25dp"
+                android:layout_marginBottom="@dimen/size_25dp">
 
                 <Button
-                    android:id="@+id/login_button"
+                    android:id="@+id/submit_button"
                     android:layout_width="@dimen/size_260dp"
                     android:layout_height="@dimen/size_40dp"
                     android:layout_marginLeft="@dimen/size_23dp"
-                    android:background="@drawable/button_style_two"
+                    android:background="@drawable/button_style_four"
                     android:fontFamily="@font/montserratbold"
-                    android:text="LOG IN"
+                    android:text="submit"
                     android:textSize="@dimen/size_12dp" />
             </RelativeLayout>
 

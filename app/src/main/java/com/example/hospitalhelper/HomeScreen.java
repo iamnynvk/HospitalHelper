@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.hospitalhelper.Adapter.SliderAdapter;
 import com.example.hospitalhelper.Data_Holder.ImageSliderItem;
+import com.example.hospitalhelper.Data_Holder.NewUserHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +29,7 @@ import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawControlle
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,10 +40,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeScreen extends AppCompatActivity {
 
-    TextView greetingTimeTv;
+    TextView greetingTimeTv,usernameTv;
     CircleImageView profileImg;
     Button profileBtn,bloodRequestBtn,bloodDonateBtn;
-
     // for sliderImage
     SliderView sliderView;
     private SliderAdapter adapter;
@@ -54,6 +55,7 @@ public class HomeScreen extends AppCompatActivity {
 
         sliderView = findViewById(R.id.imageSlider);
         greetingTimeTv = findViewById(R.id.greeting_time_textview);
+        usernameTv = findViewById(R.id.username_textview);
         profileImg = findViewById(R.id.profileView);
         profileBtn = findViewById(R.id.profile_button);
         bloodRequestBtn = findViewById(R.id.blood_request_button);
@@ -61,28 +63,32 @@ public class HomeScreen extends AppCompatActivity {
 
         //TextView in set the time
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss a");
         String formattedDate = df.format(c.getTime());
-        if(formattedDate.equals("00:00:00")&&formattedDate.equals("12:00:00")){
+
+        if (formattedDate.contains("AM")) {
             greetingTimeTv.setText("Good Morning");
-        }else{
+        } else {
             greetingTimeTv.setText("Good Evening");
         }
-
+        //UserID
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference reference = FirebaseFirestore.getInstance().collection("User").document(userid);
 
-
+        //FirebaseDatabase Connection
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference nood = db.getReference();
-        DatabaseReference childR = nood.child("Patients").child(userid).child("profileimg");
-
+        DatabaseReference childR = nood.child("Patients").child(userid);
 
         childR.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String url = snapshot.getValue().toString();
+                //Set Good Morning Or Evening
+                String url = snapshot.child("profileimg").getValue().toString();
                 Picasso.get().load(url).into(profileImg);
+                //Set the User name in TextView
+                String UserUserName = String.valueOf(snapshot.child("firstname").getValue());
+                usernameTv.setText(UserUserName);
             }
 
             @Override
@@ -90,6 +96,7 @@ public class HomeScreen extends AppCompatActivity {
 
             }
         });
+
         //Buttons Listener
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override

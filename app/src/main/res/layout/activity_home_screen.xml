@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="?attr/actionBarTheme"
-                    app:navigationIcon="@drawable/baseline_menu"/>
+                    app:navigationIcon="@drawable/baseline_menu" />
             </RelativeLayout>
 
                 <TextView

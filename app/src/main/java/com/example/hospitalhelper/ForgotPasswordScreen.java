@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 public class ForgotPasswordScreen extends AppCompatActivity {
 
     EditText forgot_email_edittext;
-    Button forgot_btn_send;
+    Button forgot_btnsend;
     private ProgressDialog mprogress;
     private FirebaseAuth mAuth;
     @Override
@@ -30,12 +30,12 @@ public class ForgotPasswordScreen extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password_screen);
 
         forgot_email_edittext = findViewById(R.id.forgot_email_edittext);
-        forgot_btn_send = findViewById(R.id.forgot_btn_send);
+        forgot_btnsend = findViewById(R.id.forgot_btn_send);
         mprogress = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
 
-        forgot_btn_send.setOnClickListener(new View.OnClickListener() {
+        forgot_btnsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 resetpassword();
@@ -44,38 +44,45 @@ public class ForgotPasswordScreen extends AppCompatActivity {
 
     }
 
-    private void resetpassword()
-    {
+    private void resetpassword() {
+        if (Validate()) {
+            String email = forgot_email_edittext.getText().toString();
+
+            mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(ForgotPasswordScreen.this, "Check your email to reset your password!", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(ForgotPasswordScreen.this, LogInScreen.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(ForgotPasswordScreen.this, "Try again! Something wrong happened!", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+        }
+    }
+    private boolean Validate() {
+        boolean result= false;
         String email = forgot_email_edittext.getText().toString();
 
         if(email.isEmpty())
         {
             forgot_email_edittext.setError("Email is required");
             forgot_email_edittext.requestFocus();
-            return;
+            return false;
         }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
             forgot_email_edittext.setError("Please provide valid email");
             forgot_email_edittext.requestFocus();
-            return;
+            return false;
         }
-        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(ForgotPasswordScreen.this,"Check your email to reset your password!",Toast.LENGTH_LONG).show();
-                    Intent intent =new Intent(ForgotPasswordScreen.this,LogInScreen.class);
-                    startActivity(intent);
-                    finish();
-                }
-                else
-                    {
-                        Toast.makeText(ForgotPasswordScreen.this,"Try again! Something wrong happened!",Toast.LENGTH_LONG).show();
-                    }
-            }
-        });
-
+        else {
+            result = true;
+        }
+        return result;
     }
 }

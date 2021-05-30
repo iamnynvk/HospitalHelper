@@ -43,7 +43,7 @@
                     android:id="@+id/blood_request_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserratmedium"
+                    android:fontFamily="@font/montserratregular"
                     android:text="Blood Request"
                     android:textColor="@color/title_color"
                     android:textSize="@dimen/size_25dp"
@@ -106,7 +106,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/bloodrequest_mobile_edittext"
+                    android:id="@+id/mobile_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_40dp"
                     android:layout_below="@id/mobile_textview"
@@ -144,7 +144,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/signup_email_edittext"
+                    android:id="@+id/email_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_40dp"
                     android:layout_below="@id/email_textview"
@@ -181,7 +181,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/age"
+                    android:id="@+id/ageB"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_40dp"
                     android:layout_below="@id/age_textview"
@@ -280,7 +280,7 @@
                     android:textSize="@dimen/size_12dp" />
 
                 <EditText
-                    android:id="@+id/blood_lastname_edittext"
+                    android:id="@+id/bloodgroup_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_40dp"
                     android:layout_below="@id/blood_group_textview"

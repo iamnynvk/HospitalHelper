@@ -273,15 +273,16 @@ public class SignUpScreen extends AppCompatActivity{
         String password = Passwords.getText().toString().trim();
 
 
-
         if (firstname.length() == 0){
             Toast.makeText(this,"Please Enter First Name", Toast.LENGTH_SHORT).show();
         }
         else if (lastname.length() == 0 ){
             Toast.makeText(this,"Please Enter Last Name", Toast.LENGTH_SHORT).show();
         }
-        else if (!validateEmailAddress(Emails)){
-            Toast.makeText(this,"Please Enter Email ID", Toast.LENGTH_SHORT).show();
+        else if (email.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please Enter Email address ", Toast.LENGTH_SHORT).show();
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(getApplicationContext(), "Please Enter Valid Email address", Toast.LENGTH_SHORT).show();
         }
         else if (mobileno.length() == 0 || mobileno.length() == 1 || mobileno.length() == 2 || mobileno.length() == 3 || mobileno.length() == 4 || mobileno.length() == 5 || mobileno.length() == 6 || mobileno.length() == 7 || mobileno.length() == 8 || mobileno.length() == 9 ){
             Toast.makeText(this,"Please Enter Valid Mobile No", Toast.LENGTH_SHORT).show();
@@ -300,18 +301,6 @@ public class SignUpScreen extends AppCompatActivity{
         }
 
         return result;
-    }
-
-    private boolean validateEmailAddress(EditText email) {
-        String emailInput = Emails.getText().toString();
-
-        if(!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches())
-        {
-            return true;
-        }
-        else {
-            return  false;
-        }
     }
 
     public void onBackPressed(){

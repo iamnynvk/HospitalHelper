@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +21,6 @@ public class HeaderForDrawerNavigation extends AppCompatActivity {
 
     TextView username_header,mobileno_header;
     CircleImageView userimage_header;
-    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +46,11 @@ public class HeaderForDrawerNavigation extends AppCompatActivity {
         childR.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //Set the User name in TextView
-                String UserNameHeader = String.valueOf(snapshot.child("firstname").getValue());
-                username_header.setText(UserNameHeader);
+                username_header.setText(snapshot.child("firstname").getValue().toString());
+                mobileno_header.setText(snapshot.child("mobileno").getValue().toString());
 
-                //Set the Mobileno in TextView
-                String Mobile_user = String.valueOf(snapshot.child("mobileno").getValue());
-                mobileno_header.setText(Mobile_user);
-
-                //set profile in circleImageview
-                String url_profile = snapshot.child("profileimg").getValue().toString();
-                Picasso.get().load(url_profile).into(userimage_header);
-
+                String link =snapshot.child("profileimg").getValue().toString();
+                Picasso.get().load(link).into(userimage_header);
             }
 
             @Override

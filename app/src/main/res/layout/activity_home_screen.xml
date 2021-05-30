@@ -15,7 +15,7 @@
         android:background="@color/colorPrimary"
         app:itemTextColor="@color/title_color"
         app:itemIconTint="@color/title_color"
-        app:headerLayout="@layout/activity_header_for_drawer_navigation"
+        app:headerLayout="@layout/header"
         app:menu="@menu/main_menu"
         android:layout_gravity="start" />
 
@@ -201,6 +201,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/size_10dp"
                     android:layout_marginTop="@dimen/size_5dp"
+                    android:textColor="@color/colorPrimary"
                     android:background="@drawable/button_style_seven"/>
 
                 <ImageView
@@ -255,6 +256,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/size_10dp"
                     android:layout_marginTop="@dimen/size_5dp"
+                    android:textColor="@color/colorPrimary"
                     android:background="@drawable/button_style_eight"/>
 
                 <ImageView

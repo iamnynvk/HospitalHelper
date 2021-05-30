@@ -4,8 +4,12 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -32,6 +36,7 @@ public class BloodRequest extends AppCompatActivity {
     Button submitBtn;
     RadioGroup GenderButtonGroup;
     RadioButton GenderButton;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +66,10 @@ public class BloodRequest extends AppCompatActivity {
             }
         });
     }
+
     private void BloodRequestData() {
         if (Validate()) {
+
             int genderselecter = GenderButtonGroup.getCheckedRadioButtonId();
             GenderButton = findViewById(genderselecter);
 
@@ -85,19 +92,31 @@ public class BloodRequest extends AppCompatActivity {
                         //d.dismiss();
                     } else {
                         // Storedata in Realtime Database
-                        //String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                        FirebaseDatabase db = FirebaseDatabase.getInstance();
-                        DatabaseReference root = db.getReference("BloodRequest");
+                        ProgressDialog dialog = new ProgressDialog(BloodRequest.this);
+                        dialog.setTitle("Submit");
+                        dialog.show();
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                dialog.setMessage("Wait...");
+                                String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                FirebaseDatabase db = FirebaseDatabase.getInstance();
+                                DatabaseReference root = db.getReference("BloodRequest");
 
 
-                        BloodRequestUser bloodRequestUser = new BloodRequestUser(fullname, mobilno, email, ageP, Genderbutton, bloodgroup, user);
-                        root.child(user).setValue(bloodRequestUser);
+                                BloodRequestUser bloodRequestUser = new BloodRequestUser(fullname, mobilno, email, ageP, Genderbutton, bloodgroup, user);
+                                root.child(user).setValue(bloodRequestUser);
 
-                        Toast.makeText(BloodRequest.this, "Requested", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(BloodRequest.this,HomeScreen.class);
-                        startActivity(intent);
-                        finish();
+
+                                Toast.makeText(BloodRequest.this, "Requested", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(BloodRequest.this,HomeScreen.class);
+                                startActivity(intent);
+                                finish();
+                                dialog.dismiss();
+                            }
+                        }, 2500);
                     }
                 }
 
@@ -109,6 +128,7 @@ public class BloodRequest extends AppCompatActivity {
         }
     }
         private boolean Validate() {
+
             boolean result = false;
 
             String fullname = fullnameEt.getText().toString().trim();
@@ -119,11 +139,14 @@ public class BloodRequest extends AppCompatActivity {
 
             if (fullname.length() == 0) {
                 Toast.makeText(getApplicationContext(), "Please Enter Fullname", Toast.LENGTH_SHORT).show();
-            } else if (mobileno.length() == 0 || mobileno.length() == 1 || mobileno.length() == 2 || mobileno.length() == 3 || mobileno.length() == 4 || mobileno.length() == 5 || mobileno.length() == 6 || mobileno.length() == 7 || mobileno.length() == 8 || mobileno.length() == 9) {
+            }
+            else if (mobileno.length() == 0 || mobileno.length() == 1 || mobileno.length() == 2 || mobileno.length() == 3 || mobileno.length() == 4 || mobileno.length() == 5 || mobileno.length() == 6 || mobileno.length() == 7 || mobileno.length() == 8 || mobileno.length() == 9) {
                 Toast.makeText(getApplicationContext(), "Please Enter Valid Mobile No", Toast.LENGTH_SHORT).show();
-            } else if (email.isEmpty()) {
+            }
+            else if (email.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Please Enter Email address ", Toast.LENGTH_SHORT).show();
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            }
+            else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 Toast.makeText(getApplicationContext(), "Please Enter Valid Email address", Toast.LENGTH_SHORT).show();
             }
             else if(ageB.length()==0){

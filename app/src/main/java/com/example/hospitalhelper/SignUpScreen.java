@@ -281,7 +281,8 @@ public class SignUpScreen extends AppCompatActivity{
         }
         else if (email.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please Enter Email address ", Toast.LENGTH_SHORT).show();
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(getApplicationContext(), "Please Enter Valid Email address", Toast.LENGTH_SHORT).show();
         }
         else if (mobileno.length() == 0 || mobileno.length() == 1 || mobileno.length() == 2 || mobileno.length() == 3 || mobileno.length() == 4 || mobileno.length() == 5 || mobileno.length() == 6 || mobileno.length() == 7 || mobileno.length() == 8 || mobileno.length() == 9 ){

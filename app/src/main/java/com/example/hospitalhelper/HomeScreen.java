@@ -30,8 +30,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -86,13 +84,12 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         verifyemailrelative = findViewById(R.id.verifyemailrelative);
 
         //Drawerlayout
+
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
-
-        /*setSupportActionBar(toolbar);*/
-
-
+        SetUpToolbar();
+        //setSupportActionBar(toolbar);
 
         //Action Here
         profileButton.setOnClickListener(new View.OnClickListener() {
@@ -137,10 +134,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
         //DrawerNavigation
         navigationView.bringToFront();
-        toggle = new ActionBarDrawerToggle(HomeScreen.this, drawerLayout,toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
         navigationView.setNavigationItemSelectedListener(this);
 
     }
@@ -241,6 +234,15 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 Log.i("GGG", "onIndicatorClicked: " + sliderView.getCurrentPagePosition());
             }
         });
+    }
+
+    private void SetUpToolbar() {
+        setSupportActionBar(toolbar);
+        toggle = new ActionBarDrawerToggle(HomeScreen.this, drawerLayout,toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.title_color));
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toggle.syncState();
     }
 
     @Override

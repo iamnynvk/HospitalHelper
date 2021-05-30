@@ -22,7 +22,7 @@
                 android:id="@+id/userprofile_for_header"
                 android:layout_width="@dimen/size_60dp"
                 android:layout_height="@dimen/size_60dp"
-                android:src=""
+                android:src="@drawable/profile_photo"
                 android:layout_marginTop="@dimen/size_20dp"
                 android:layout_marginLeft="@dimen/size_30dp"/>
 

@@ -20,7 +20,7 @@ public class HeaderForDrawerNavigation extends AppCompatActivity {
 
     TextView username_header,mobileno_header;
     CircleImageView userimage_header;
-    FirebaseAuth mAuth;
+    //FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -52,13 +52,19 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 
         if (position == 0) {
             Glide.with(viewHolder.itemView)
-                    .load("https://firebasestorage.googleapis.com/v0/b/hospitalhelper07.appspot.com/o/ImageSlider_Images%2FBanner1.jpg?alt=media&token=b29a2006-e16e-4490-87f9-b0ff5cecf3df")
+                    .load("https://firebasestorage.googleapis.com/v0/b/hospitalhelper07.appspot.com/o/ImageSlider_Images%2Fvaccine.jpg?alt=media&token=564b45a6-f175-4d0d-8e9b-d341c62542a0")
                     .fitCenter()
                     .into(viewHolder.imageViewBackground);
         }
         else if (position == 1){
             Glide.with(viewHolder.itemView)
-                    .load("https://firebasestorage.googleapis.com/v0/b/hospitalhelper07.appspot.com/o/ImageSlider_Images%2FBanner2.jpg?alt=media&token=a28c2463-f39a-472e-8a91-7b0f7af76a71")
+                    .load("https://firebasestorage.googleapis.com/v0/b/hospitalhelper07.appspot.com/o/ImageSlider_Images%2Fhospitalbeds.jpg?alt=media&token=bd7ca0b5-4e31-4bbf-8fd6-8886428c3c2d")
+                    .fitCenter()
+                    .into(viewHolder.imageViewBackground);
+        }
+        else if (position == 2){
+            Glide.with(viewHolder.itemView)
+                    .load("https://firebasestorage.googleapis.com/v0/b/hospitalhelper07.appspot.com/o/ImageSlider_Images%2Ffood.jpg?alt=media&token=5505e481-5320-4f88-a882-5df7c2b71f30")
                     .fitCenter()
                     .into(viewHolder.imageViewBackground);
         }

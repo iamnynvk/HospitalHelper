@@ -161,7 +161,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 String UserName = String.valueOf(snapshot.child("firstname").getValue());
                 userName.setText(UserName);
 
-                //Set Good Morning Or Evening
+                //set profile in circleImageview
                 String url = snapshot.child("profileimg").getValue().toString();
                 Picasso.get().load(url).into(profileImg);
 
@@ -217,9 +217,9 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         bannerSlider = new ArrayList<>();
         ImageSliderItem sliderItem = new ImageSliderItem();
 
-        for (int i = 0; i <= 2; i++) {
+        for (int i = 0; i <= 3; i++) {
             sliderItem.setDescription("");
-            sliderItem.setImageUrl("https://firebasestorage.googleapis.com/v0/b/hospitalhelper07.appspot.com/o/ImageSlider_Images%2FBanner3.jpg?alt=media&token=73b2a863-e2f3-44f4-9842-43136658bcce");
+            sliderItem.setImageUrl("https://firebasestorage.googleapis.com/v0/b/hospitalhelper07.appspot.com/o/ImageSlider_Images%2Fambulance.jpg?alt=media&token=b941bfef-e18e-4725-b844-a3c03158adcf");
             bannerSlider.add(sliderItem);
         }
 

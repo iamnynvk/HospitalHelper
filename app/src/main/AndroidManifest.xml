@@ -15,7 +15,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".HeaderForDrawerNavigation"></activity>
+        <activity android:name=".AboutUs" />
         <activity android:name=".ContactUs" />
         <activity android:name=".Videos" />
         <activity android:name=".Facilities" />

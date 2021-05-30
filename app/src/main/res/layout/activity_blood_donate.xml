@@ -1,9 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".BloodDonate">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:id="@+id/back_button_relative_blood"
+            android:layout_width="@dimen/size_30dp"
+            android:layout_height="@dimen/size_30dp"
+            android:layout_marginTop="@dimen/size_15dp"
+            android:layout_marginLeft="@dimen/size_18dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/back_button_for"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_arrow_back" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:layout_below="@+id/back_button_relative_blood">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/blood_donate_question_relative"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_23dp"
+                        android:layout_marginTop="@dimen/size_10dp">
+
+                        <TextView
+                            android:id="@+id/blood_donate_question"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserratregular"
+                            android:text="Question"
+                            android:textColor="@color/title_color"
+                            android:textSize="@dimen/size_25dp"
+                            android:textStyle="bold"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/que_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/blood_donate_question_relative"
+                    android:layout_marginTop="@dimen/size_30dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Have you donate blood within \nthe 6 month ?"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/montserratregular"
+                        android:textStyle="bold"
+                        android:layout_margin="@dimen/size_20dp"
+                        android:textSize="@dimen/size_15dp"
+                        android:textColor="@color/text_color"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_25dp"
+                    android:layout_below="@+id/que_relative"
+                    android:weightSum="2"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/size_30dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/yes_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_style_six"
+                        android:layout_marginRight="@dimen/size_30dp"
+                        android:text="Yes"/>
+
+                    <Button
+                        android:id="@+id/no_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_style_six"
+                        android:layout_marginLeft="@dimen/size_30dp"
+                        android:text="No"/>
+                </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+</RelativeLayout>

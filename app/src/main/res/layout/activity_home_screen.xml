@@ -6,16 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeScreen"
-    tools:openDrawer="">
+    tools:openDrawer="end">
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/nav_view"
-        android:background="@color/white_shadow_color"
+        android:background="@color/colorPrimary"
         app:itemTextColor="@color/title_color"
         app:itemIconTint="@color/title_color"
-        app:headerLayout="@layout/header"
+        app:headerLayout="@layout/activity_header_for_drawer_navigation"
         app:menu="@menu/main_menu"
         android:layout_gravity="start" />
 
@@ -267,11 +267,28 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/facilities_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/blood_donate_relative"
+                android:layout_marginTop="@dimen/size_20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Facilities"
+                    android:textColor="@color/title_color"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/size_18dp"
+                    android:fontFamily="@font/montserratmedium" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/feed_relative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_15dp"
-                android:layout_below="@+id/blood_donate_relative">
+                android:layout_marginTop="@dimen/size_5dp"
+                android:layout_below="@+id/facilities_relative">
 
                 <LinearLayout
                     android:layout_width="match_parent"

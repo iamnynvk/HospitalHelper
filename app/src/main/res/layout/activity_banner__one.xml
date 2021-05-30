@@ -30,6 +30,32 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/baseline_arrow_back" />
             </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/back_button_relative"
+                android:layout_marginTop="@dimen/size_10dp">
+
+                <TextView
+                    android:id="@+id/textview_vaccination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vaccination Available"
+                    android:fontFamily="@font/montserratregular"
+                    android:textSize="@dimen/size_20dp"
+                    android:layout_marginStart="@dimen/size_35dp"
+                    android:textColor="@color/title_color" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_200dp"
+                    android:layout_below="@+id/textview_vaccination"
+                    android:src="@drawable/vaccine"/>
+
+
+
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 

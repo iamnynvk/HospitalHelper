@@ -3,8 +3,10 @@ package com.example.hospitalhelper;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -60,26 +62,40 @@ public class ContactUs extends AppCompatActivity {
 
     private void ContactUs()
     {
+
         if (Validate()) {
             final String fullname = fullnameEt.getText().toString();
             final String mobilno = mobileEt.getText().toString();
             final String email = emailEt.getText().toString();
             final String msg = message.getText().toString();
 
-            // Storedata in Realtime Database
-            //String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            FirebaseDatabase db = FirebaseDatabase.getInstance();
-            DatabaseReference root = db.getReference("ContactUs");
+            ProgressDialog dialog = new ProgressDialog(ContactUs.this);
+            dialog.setTitle("Submit");
+            dialog.setMessage("Wait...");
+            dialog.show();
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // Storedata in Realtime Database
+                    //String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    FirebaseDatabase db = FirebaseDatabase.getInstance();
+                    DatabaseReference root = db.getReference("ContactUs");
 
 
-            ContactUsUser contactUsUser = new ContactUsUser(fullname, mobilno, email, msg, user);
-            root.child(user).setValue(contactUsUser);
+                    ContactUsUser contactUsUser = new ContactUsUser(fullname, mobilno, email, msg, user);
+                    root.child(user).setValue(contactUsUser);
 
-            Toast.makeText(ContactUs.this, "Requested", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(ContactUs.this,HomeScreen.class);
-            startActivity(intent);
-            finish();
+                    Toast.makeText(ContactUs.this, "Submitted", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(ContactUs.this,HomeScreen.class);
+                    startActivity(intent);
+                    finish();
+                    dialog.dismiss();
+                }
+            }, 2500);
+
         }
 
     }
@@ -92,20 +108,41 @@ public class ContactUs extends AppCompatActivity {
         String email = emailEt.getText().toString().trim();
         String msg = message.getText().toString().trim();
 
-        if (fullname.length() == 0) {
-            Toast.makeText(getApplicationContext(), "Please Enter Fullname", Toast.LENGTH_SHORT).show();
+        if(fullname.isEmpty())
+        {
+            fullnameEt.setError("Please Enter Fullname");
+            fullnameEt.requestFocus();
+            return false;
         }
-        else if (mobileno.length() == 0 || mobileno.length() == 1 || mobileno.length() == 2 || mobileno.length() == 3 || mobileno.length() == 4 || mobileno.length() == 5 || mobileno.length() == 6 || mobileno.length() == 7 || mobileno.length() == 8 || mobileno.length() == 9) {
-            Toast.makeText(getApplicationContext(), "Please Enter Valid Mobile No", Toast.LENGTH_SHORT).show();
+        else if(mobileno.isEmpty())
+        {
+            mobileEt.setError("Enter MobileNo");
+            mobileEt.requestFocus();
+            return false;
         }
-        else if (email.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Please Enter Email address ", Toast.LENGTH_SHORT).show();
+        else if (mobileno.length() == 0 || mobileno.length() == 1 || mobileno.length() == 2 || mobileno.length() == 3 || mobileno.length() == 4 || mobileno.length() == 5 || mobileno.length() == 6 || mobileno.length() == 7 || mobileno.length() == 8 || mobileno.length() == 9)
+        {
+            mobileEt.setError("Enter Valid MobileNo");
+            mobileEt.requestFocus();
+            return false;
         }
-        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(getApplicationContext(), "Please Enter Valid Email address", Toast.LENGTH_SHORT).show();
+        else if(email.isEmpty())
+        {
+            emailEt.setError("Email is required");
+            emailEt.requestFocus();
+            return false;
         }
-        else if(msg.length()==0){
-            Toast.makeText(getApplicationContext(), "Please Enter Message", Toast.LENGTH_SHORT).show();
+        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        {
+            emailEt.setError("Provide valid email");
+            emailEt.requestFocus();
+            return false;
+        }
+        else if(msg.isEmpty())
+        {
+            message.setError("Message is required");
+            message.requestFocus();
+            return false;
         }
         else {
             result = true;

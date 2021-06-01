@@ -1,9 +1,355 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".UserProfile">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/toolbar_pannel"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/toolbarpannel">
+
+        <RelativeLayout
+            android:id="@+id/back_button_relative"
+            android:layout_width="@dimen/size_30dp"
+            android:layout_height="@dimen/size_30dp"
+            android:layout_marginTop="@dimen/size_7dp"
+            android:layout_marginLeft="@dimen/size_15dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/back_button_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_arrow_back" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_pannel">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/background_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_179dp"
+                android:layout_marginTop="@dimen/size_20dp"
+                android:layout_marginLeft="@dimen/size_10dp"
+                android:layout_marginRight="@dimen/size_10dp"
+                android:background="@drawable/button_style_three"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_photo_relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_40dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userphoto_profile"
+                android:layout_width="@dimen/size_90dp"
+                android:layout_height="@dimen/size_90dp"
+                android:src="@drawable/profile_photo"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/username_relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_photo_relative"
+            android:layout_marginTop="@dimen/size_7dp">
+
+            <TextView
+                android:id="@+id/username_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/light_jambu_color"
+                android:fontFamily="@font/montserratmedium"
+                android:textSize="@dimen/size_15dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/userid_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username_relative"
+            android:weightSum="2"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/size_5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/username_profile"
+                android:text="Hospital ID : "
+                android:textColor="@color/intro_desription_color"
+                android:gravity="center"
+                android:fontFamily="@font/montserratmedium"/>
+
+            <TextView
+                android:id="@+id/mobileno_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/username_profile"
+                android:text=""
+                android:fontFamily="@font/montserratmedium"
+                android:textColor="@color/light_jambu_color"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/Basic_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userid_profile"
+            android:layout_marginTop="@dimen/size_35dp">
+
+            <TextView
+                android:id="@+id/basic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Basic Information"
+                android:textColor="@color/title_color"
+                android:fontFamily="@font/montserratbold"
+                android:textSize="@dimen/size_17dp"
+                android:layout_marginStart="@dimen/size_20dp"
+                android:layout_marginEnd="@dimen/size_20dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/lines"
+                android:layout_below="@+id/basic"
+                android:layout_marginLeft="@dimen/size_20dp"
+                android:layout_marginTop="@dimen/size_3dp"
+                android:layout_marginRight="@dimen/size_18dp"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Basic_info"
+            android:weightSum="2"
+            android:gravity="left"
+            android:layout_marginTop="@dimen/size_12dp"
+            android:layout_marginLeft="@dimen/size_20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/firstname_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name : "
+                android:layout_gravity="left"
+                android:fontFamily="@font/montserratmedium"
+                android:textSize="@dimen/size_12dp"
+                android:textColor="@color/intro_desription_color" />
+
+            <TextView
+                android:id="@+id/firstname_profile_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/light_jambu_color"
+                android:fontFamily="@font/montserratmedium"
+                android:layout_gravity="left" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_user1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detail_user"
+            android:weightSum="2"
+            android:gravity="left"
+            android:layout_marginTop="@dimen/size_5dp"
+            android:layout_marginLeft="@dimen/size_20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lastname_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name : "
+                android:layout_gravity="left"
+                android:fontFamily="@font/montserratmedium"
+                android:textColor="@color/intro_desription_color" />
+
+            <TextView
+                android:id="@+id/lastname_profile_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/light_jambu_color"
+                android:fontFamily="@font/montserratmedium"
+                android:layout_gravity="left" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_user2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detail_user1"
+            android:weightSum="2"
+            android:gravity="left"
+            android:layout_marginTop="@dimen/size_5dp"
+            android:layout_marginLeft="@dimen/size_20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/email_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email ID : "
+                android:layout_gravity="left"
+                android:fontFamily="@font/montserratmedium"
+                android:textColor="@color/intro_desription_color" />
+
+            <TextView
+                android:id="@+id/email_profile_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/light_jambu_color"
+                android:fontFamily="@font/montserratmedium"
+                android:layout_gravity="left" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_user3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detail_user2"
+            android:weightSum="2"
+            android:gravity="left"
+            android:layout_marginTop="@dimen/size_5dp"
+            android:layout_marginLeft="@dimen/size_20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/mobileno_profile_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile No : "
+                android:layout_gravity="left"
+                android:fontFamily="@font/montserratmedium"
+                android:textColor="@color/intro_desription_color" />
+
+            <TextView
+                android:id="@+id/mobile_profile_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/light_jambu_color"
+                android:fontFamily="@font/montserratmedium"
+                android:layout_gravity="left" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_user4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detail_user3"
+            android:weightSum="2"
+            android:gravity="left"
+            android:layout_marginTop="@dimen/size_5dp"
+            android:layout_marginLeft="@dimen/size_20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/gender_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender : "
+                android:layout_gravity="left"
+                android:fontFamily="@font/montserratmedium"
+                android:textColor="@color/intro_desription_color" />
+
+            <TextView
+                android:id="@+id/gender_profile_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/light_jambu_color"
+                android:fontFamily="@font/montserratmedium"
+                android:layout_gravity="left" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail_user5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detail_user4"
+            android:weightSum="2"
+            android:gravity="left"
+            android:layout_marginTop="@dimen/size_5dp"
+            android:layout_marginLeft="@dimen/size_20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/birthdate_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Birthdate : "
+                android:layout_gravity="left"
+                android:fontFamily="@font/montserratmedium"
+                android:textColor="@color/intro_desription_color" />
+
+            <TextView
+                android:id="@+id/birthdate_profile_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/light_jambu_color"
+                android:fontFamily="@font/montserratmedium"
+                android:layout_gravity="left" />
+        </LinearLayout>
+
+            <LinearLayout
+                android:weightSum="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/detail_user5"
+                android:layout_marginTop="@dimen/size_40dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/edit_profile_button"
+                    android:layout_width="@dimen/size_100dp"
+                    android:layout_height="@dimen/size_35dp"
+                    android:layout_marginRight="@dimen/size_20dp"
+                    android:background="@drawable/button_style_six"
+                    android:text="Edit Profile"/>
+
+                <Button
+                    android:id="@+id/logout_button"
+                    android:layout_width="@dimen/size_100dp"
+                    android:layout_height="@dimen/size_35dp"
+                    android:layout_marginLeft="@dimen/size_20dp"
+                    android:text="Log Out"
+                    android:background="@drawable/button_style_nine"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

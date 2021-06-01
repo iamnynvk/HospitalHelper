@@ -1,6 +1,5 @@
 package com.example.hospitalhelper;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,7 +20,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.hospitalhelper.Data_Holder.BloodRequestUser;
-import com.example.hospitalhelper.Data_Holder.NewUserHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

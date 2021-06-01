@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -139,6 +140,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     }
 
     private void ProfileAndData() {
+
         //UserID
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -157,7 +159,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 //set profile in circleImageview
                 String url = snapshot.child("profileimg").getValue().toString();
                 Picasso.get().load(url).into(profileImg);
-
             }
 
             @Override
@@ -169,6 +170,16 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
     private void GreetingTextSet() {
         Calendar c = Calendar.getInstance();
+        int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+
+        if(timeOfDay >= 0 && timeOfDay < 12){
+            greetingTime.setText("Good Morning");
+        }else if(timeOfDay >= 12 && timeOfDay < 16){
+            greetingTime.setText("Good Afternoon");
+        }else if(timeOfDay >= 16 && timeOfDay < 24) {
+            greetingTime.setText("Good Evening");
+        }
+       /* Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
         String formattedDate = df.format(c.getTime());
 
@@ -176,7 +187,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             greetingTime.setText("Good Morning");
         }else{
             greetingTime.setText("Good Evening");
-        }
+        }*/
     }
 
     private void VerifyEmailID() {

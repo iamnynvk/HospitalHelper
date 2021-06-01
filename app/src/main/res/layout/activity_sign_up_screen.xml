@@ -405,7 +405,7 @@
                     android:padding="@dimen/size_10dp"
                     android:backgroundTint="@color/similarwhite"
                     android:text=""
-                    android:hint="*************"
+                    android:hint="Marlin@123"
                     android:textColorHint="@color/tab_indicator_grey"
                     android:textColor="@color/title_color" />
             </RelativeLayout>

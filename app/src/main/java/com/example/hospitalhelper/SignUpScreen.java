@@ -273,34 +273,66 @@ public class SignUpScreen extends AppCompatActivity{
         String password = Passwords.getText().toString().trim();
 
 
-        if (firstname.length() == 0){
-            Toast.makeText(this,"Please Enter First Name", Toast.LENGTH_SHORT).show();
+        if(firstname.isEmpty())
+        {
+            FirstName.setError("Enter First Name");
+            FirstName.requestFocus();
+            return false;
         }
-        else if (lastname.length() == 0 ){
-            Toast.makeText(this,"Please Enter Last Name", Toast.LENGTH_SHORT).show();
+        else if(lastname.isEmpty())
+        {
+            LastName.setError("Enter Last Name");
+            LastName.requestFocus();
+            return false;
         }
-        else if (email.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Please Enter Email address ", Toast.LENGTH_SHORT).show();
+        else if(email.isEmpty())
+        {
+            Emails.setError("Email is required");
+            Emails.requestFocus();
+            return false;
         }
-        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(getApplicationContext(), "Please Enter Valid Email address", Toast.LENGTH_SHORT).show();
+        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        {
+            Emails.setError("Provide valid email");
+            Emails.requestFocus();
+            return false;
         }
-        else if (mobileno.length() == 0 || mobileno.length() == 1 || mobileno.length() == 2 || mobileno.length() == 3 || mobileno.length() == 4 || mobileno.length() == 5 || mobileno.length() == 6 || mobileno.length() == 7 || mobileno.length() == 8 || mobileno.length() == 9 ){
-            Toast.makeText(this,"Please Enter Valid Mobile No", Toast.LENGTH_SHORT).show();
+        else if(mobileno.isEmpty())
+        {
+            MobileNo.setError("Enter MobileNo");
+            MobileNo.requestFocus();
+            return false;
+        }
+        else if (mobileno.length() == 0 || mobileno.length() == 1 || mobileno.length() == 2 || mobileno.length() == 3 || mobileno.length() == 4 || mobileno.length() == 5 || mobileno.length() == 6 || mobileno.length() == 7 || mobileno.length() == 8 || mobileno.length() == 9)
+        {
+            MobileNo.setError("Enter Valid MobileNo");
+            MobileNo.requestFocus();
+            return false;
         }
         else if (GenderButtonGroup.getCheckedRadioButtonId() == -1){
             Toast.makeText(getApplicationContext(), "Select Gender", Toast.LENGTH_SHORT).show();
         }
-        else if (birthdate.length() == 0){
-            Toast.makeText(this,"Please Enter Birthdate", Toast.LENGTH_SHORT).show();
+        else if(birthdate.isEmpty())
+        {
+            BirthDate.setError("Enter Birthdate");
+            BirthDate.requestFocus();
+            return false;
         }
-        else if (password.length() == 0 ){
-            Toast.makeText(this,"Please Enter Password", Toast.LENGTH_SHORT).show();
+        else if(password.isEmpty())
+        {
+            Passwords.setError("Enter Password");
+            Passwords.requestFocus();
+            return false;
+        }
+        else  if (!password.matches( "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*+=?-]).{8,15}$") || !password.matches( "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*+=?-]).{8,15}$"))
+        {
+            Passwords.setError("Enter Strong Password");
+            Passwords.requestFocus();
+            return false;
         }
         else {
             result = true;
         }
-
         return result;
     }
 

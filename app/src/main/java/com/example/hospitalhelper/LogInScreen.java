@@ -87,11 +87,11 @@ public class LogInScreen extends AppCompatActivity {
     private void UserAuthenticate() {
         final String emailid=email_edittext.getText().toString();
         final String password = password_edittext.getText().toString();
-
-        mprogress.setMessage("Loading...");
-        mprogress.show();
+        
         if(validate())
         {
+            mprogress.setMessage("Loading...");
+            mprogress.show();
             mAuth = FirebaseAuth.getInstance();
 
             mAuth.signInWithEmailAndPassword(emailid,password)
@@ -100,8 +100,8 @@ public class LogInScreen extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful())
                             {
-                                Utility.setIsLogin(getApplicationContext(),"isLogin");
                                 mprogress.dismiss();
+                                Utility.setIsLogin(getApplicationContext(),"isLogin");
                                 Intent intent = new Intent(LogInScreen.this,HomeScreen.class);
                                 startActivity(intent);
                                 finish();
@@ -117,24 +117,31 @@ public class LogInScreen extends AppCompatActivity {
     }
 
     private boolean validate() {
-        Boolean result = false;
+        boolean result = false;
 
         final String email=email_edittext.getText().toString();
         final String password = password_edittext.getText().toString();
+
         if(email.isEmpty())
         {
-            Toast.makeText(this,"Please Enter Email ID", Toast.LENGTH_SHORT).show();
+            email_edittext.setError("Email is required");
+            email_edittext.requestFocus();
+            return false;
         }
         else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
-            Toast.makeText(this,"Please provide valid email", Toast.LENGTH_SHORT).show();
+            email_edittext.setError("Provide valid email");
+            email_edittext.requestFocus();
+            return false;
         }
-        else if(password.length()==0)
+        else if(password.isEmpty())
         {
-            Toast.makeText(this,"Please Enter Password", Toast.LENGTH_SHORT).show();
+            password_edittext.setError("Enter Password");
+            password_edittext.requestFocus();
+            return false;
         }
         else {
-            return true;
+            result = true;
         }
         return result;
     }

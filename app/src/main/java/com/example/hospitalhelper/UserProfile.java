@@ -26,7 +26,8 @@ public class UserProfile extends AppCompatActivity {
     ImageView BackButton,profileImage;
     ProgressDialog dialog;
 
-    TextView username,mobileid,firstname,lastname,emailid,mobileno,gender,birthdate;
+    TextView username,mobileid,firstname,lastname,emailid,mobileno,gender,
+    //
 
 
     @Override

@@ -26,8 +26,7 @@ public class UserProfile extends AppCompatActivity {
     ImageView BackButton,profileImage;
     ProgressDialog dialog;
 
-    TextView username,mobileid,firstname,lastname,emailid,mobileno,gender,
-    //
+    TextView username,mobileid,firstname,lastname,mobileno,birthdate;
 
 
     @Override
@@ -45,16 +44,13 @@ public class UserProfile extends AppCompatActivity {
         mobileid = findViewById(R.id.mobileno_profile);
         firstname = findViewById(R.id.firstname_profile_text);
         lastname = findViewById(R.id.lastname_profile_text);
-        emailid = findViewById(R.id.email_profile_text);
         mobileno = findViewById(R.id.mobile_profile_text);
-        gender = findViewById(R.id.gender_profile_text);
         birthdate = findViewById(R.id.birthdate_profile_text);
 
         Editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserProfile.this,EditProfile.class);
-                startActivity(intent);
+                startActivity(new Intent(UserProfile.this,ProfileEdit.class));
                 finish();
             }
         });
@@ -86,7 +82,7 @@ public class UserProfile extends AppCompatActivity {
         //FirebaseDatabase Connection
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference();
-        DatabaseReference childR = reference.child("Patients").child(userid);
+        DatabaseReference childR = reference.child("ProfileEditData").child(userid);
 
         childR.addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,14 +100,8 @@ public class UserProfile extends AppCompatActivity {
                 String LastName = String.valueOf(snapshot.child("lastname").getValue());
                 lastname.setText(LastName);
 
-                String EmailID = String.valueOf(snapshot.child("emailid").getValue());
-                emailid.setText(EmailID);
-
                 String MobileNo = String.valueOf(snapshot.child("mobileno").getValue());
                 mobileno.setText(MobileNo);
-
-                String Gender = String.valueOf(snapshot.child("genderbutton").getValue());
-                gender.setText(Gender);
 
                 String BirthDate = String.valueOf(snapshot.child("birthdate").getValue());
                 birthdate.setText(BirthDate);

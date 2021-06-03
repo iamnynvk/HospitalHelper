@@ -205,40 +205,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/detail_user2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/detail_user1"
-            android:weightSum="2"
-            android:gravity="left"
-            android:layout_marginTop="@dimen/size_5dp"
-            android:layout_marginLeft="@dimen/size_20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/email_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email ID : "
-                android:layout_gravity="left"
-                android:fontFamily="@font/montserratmedium"
-                android:textColor="@color/intro_desription_color" />
-
-            <TextView
-                android:id="@+id/email_profile_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/light_jambu_color"
-                android:fontFamily="@font/montserratmedium"
-                android:layout_gravity="left" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/detail_user3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/detail_user2"
+            android:layout_below="@+id/detail_user1"
             android:weightSum="2"
             android:gravity="left"
             android:layout_marginTop="@dimen/size_5dp"
@@ -265,40 +235,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/detail_user4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/detail_user3"
-            android:weightSum="2"
-            android:gravity="left"
-            android:layout_marginTop="@dimen/size_5dp"
-            android:layout_marginLeft="@dimen/size_20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/gender_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gender : "
-                android:layout_gravity="left"
-                android:fontFamily="@font/montserratmedium"
-                android:textColor="@color/intro_desription_color" />
-
-            <TextView
-                android:id="@+id/gender_profile_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/light_jambu_color"
-                android:fontFamily="@font/montserratmedium"
-                android:layout_gravity="left" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/detail_user5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/detail_user4"
+            android:layout_below="@+id/detail_user3"
             android:weightSum="2"
             android:gravity="left"
             android:layout_marginTop="@dimen/size_5dp"

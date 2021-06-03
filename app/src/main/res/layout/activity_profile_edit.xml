@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileEdit"
+    android:background="@color/colorPrimary">
+
+        <RelativeLayout
+            android:id="@+id/toolbar_pannel_for_editprofile"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/toolbarpannel">
+
+            <RelativeLayout
+                android:id="@+id/back_relative"
+                android:layout_width="@dimen/size_30dp"
+                android:layout_height="@dimen/size_30dp"
+                android:layout_marginTop="@dimen/size_7dp"
+                android:layout_marginLeft="@dimen/size_15dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/back_button_editprofile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_arrow_back" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_pannel_for_editprofile">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/toolbar_pannel_for_editprofile">
+
+                <RelativeLayout
+                    android:id="@+id/edit_profile_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10dp"
+                    android:layout_marginStart="@dimen/size_20dp"
+                    android:layout_marginEnd="@dimen/size_20dp">
+
+                    <TextView
+                        android:id="@+id/edit_profile_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Edit Profile"
+                        android:textColor="@color/title_color"
+                        android:fontFamily="@font/montserratmedium"
+                        android:textSize="@dimen/size_20dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/editprofile_photo_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_15dp"
+                    android:layout_below="@+id/edit_profile_heading">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Please Select Photo"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/size_13dp"
+                        android:fontFamily="@font/montserratregular"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="@dimen/size_23dp"
+                        android:layout_marginTop="@dimen/size_26dp"/>
+
+                    <Button
+                        android:id="@+id/eiditprofile_photo_chooser"
+                        android:layout_width="@dimen/size_80dp"
+                        android:layout_height="@dimen/size_30dp"
+                        android:text="Choose"
+                        android:background="@drawable/button_style_four"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/size_15dp"
+                        android:layout_marginTop="@dimen/size_21dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/editprofile_photo_relative_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/size_10dp"
+                    android:layout_below="@+id/editprofile_photo_relative">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/editprofile_photo_set"
+                        android:layout_width="@dimen/size_150dp"
+                        android:layout_height="@dimen/size_150dp"
+                        android:src="@drawable/profile_photo"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/signup_firstname_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/editprofile_photo_relative_main"
+                    android:layout_marginTop="@dimen/size_17dp">
+
+                    <TextView
+                        android:id="@+id/editprofile_firstname_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_23dp"
+                        android:fontFamily="@font/montserratregular"
+                        android:text="First Name"
+                        android:textStyle="bold"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/size_12dp" />
+
+                    <EditText
+                        android:id="@+id/editprofile_firstname_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="49dp"
+                        android:layout_below="@id/editprofile_firstname_textview"
+                        android:layout_marginLeft="@dimen/size_23dp"
+                        android:layout_marginTop="@dimen/size_5dp"
+                        android:layout_marginRight="@dimen/size_25dp"
+                        android:background="@drawable/edit_text_style"
+                        android:fontFamily="@font/montserratmedium"
+                        android:inputType="textPersonName"
+                        android:padding="10dp"
+                        android:hint="Marlin"
+                        android:textColorHint="@color/tab_indicator_grey"
+                        android:backgroundTint="@color/similarwhite"
+                        android:textColor="@color/title_color" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/signup_lastname_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/signup_firstname_relative"
+                    android:layout_marginTop="@dimen/size_22dp">
+
+                    <TextView
+                        android:id="@+id/editprofile_lastname_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_23dp"
+                        android:fontFamily="@font/montserratregular"
+                        android:text="Last Name"
+                        android:textStyle="bold"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/size_12dp" />
+
+                    <EditText
+                        android:id="@+id/editprofile_lastname_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_40dp"
+                        android:layout_below="@id/editprofile_lastname_textview"
+                        android:layout_marginLeft="@dimen/size_23dp"
+                        android:layout_marginTop="@dimen/size_5dp"
+                        android:layout_marginRight="@dimen/size_25dp"
+                        android:background="@drawable/edit_text_style"
+                        android:fontFamily="@font/montserratmedium"
+                        android:inputType="textEmailAddress"
+                        android:padding="10dp"
+                        android:backgroundTint="@color/similarwhite"
+                        android:text=""
+                        android:hint="Patterson"
+                        android:textColorHint="@color/tab_indicator_grey"
+                        android:textColor="@color/title_color" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/signup_mobile_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/signup_lastname_relative"
+                    android:layout_marginTop="@dimen/size_22dp">
+
+                    <TextView
+                        android:id="@+id/editprofile_mobile_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_23dp"
+                        android:fontFamily="@font/montserratregular"
+                        android:text="Mobile Number"
+                        android:textStyle="bold"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/size_12dp" />
+
+                    <EditText
+                        android:id="@+id/editprofile_mobile_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_40dp"
+                        android:layout_below="@id/editprofile_mobile_textview"
+                        android:layout_marginLeft="@dimen/size_23dp"
+                        android:layout_marginTop="@dimen/size_5dp"
+                        android:layout_marginRight="@dimen/size_25dp"
+                        android:background="@drawable/edit_text_style"
+                        android:fontFamily="@font/montserratmedium"
+                        android:inputType="phone"
+                        android:padding="10dp"
+                        android:maxLength="10"
+                        android:backgroundTint="@color/similarwhite"
+                        android:text=""
+                        android:hint="Ex.8090807090"
+                        android:textColorHint="@color/tab_indicator_grey"
+                        android:textColor="@color/title_color" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/signup_birthday_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/signup_mobile_relative"
+                    android:layout_marginTop="@dimen/size_17dp">
+
+                    <TextView
+                        android:id="@+id/editprofile_birthday_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_23dp"
+                        android:fontFamily="@font/montserratregular"
+                        android:text="Birthdate"
+                        android:textStyle="bold"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/size_12dp" />
+
+                    <EditText
+                        android:id="@+id/editprofile_birthday_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_40dp"
+                        android:layout_below="@+id/editprofile_birthday_text"
+                        android:layout_marginLeft="@dimen/size_23dp"
+                        android:layout_marginTop="@dimen/size_5dp"
+                        android:layout_marginRight="@dimen/size_25dp"
+                        android:background="@drawable/edit_text_style"
+                        android:inputType="text"
+                        android:fontFamily="@font/montserratmedium"
+                        android:padding="@dimen/size_10dp"
+                        android:backgroundTint="@color/similarwhite"
+                        android:text=""
+                        android:hint="Ex.01/01/2020"
+                        android:textColorHint="@color/tab_indicator_grey"
+                        android:textColor="@color/title_color" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/Register_button_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/signup_birthday_relative"
+                    android:layout_marginTop="@dimen/size_45dp"
+                    android:layout_marginBottom="@dimen/size_30dp">
+
+                    <Button
+                        android:id="@+id/editprofile_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_40dp"
+                        android:layout_marginLeft="@dimen/size_23dp"
+                        android:layout_marginRight="@dimen/size_25dp"
+                        android:background="@drawable/button_style_four"
+                        android:fontFamily="@font/montserratbold"
+                        android:text="Save"
+                        android:textSize="@dimen/size_12dp" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>

@@ -15,6 +15,7 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".ProfileEdit"></activity>
         <activity android:name=".AboutUs" />
         <activity android:name=".ContactUs" />
         <activity android:name=".Videos" />
@@ -28,7 +29,9 @@
         <activity android:name=".Banner_One" />
         <activity android:name=".ForgotPasswordScreen" />
         <activity android:name=".SignUpScreen" />
-        <activity android:name=".HomeScreen" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".HomeScreen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".LogInScreen" />
         <activity android:name=".Intro_Screen" />
         <activity android:name=".MainActivity">

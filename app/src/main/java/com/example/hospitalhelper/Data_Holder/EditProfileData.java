@@ -1,22 +1,15 @@
 package com.example.hospitalhelper.Data_Holder;
 
-public class NewUserHelper {
-    String Firstname,Lastname,Emailid,Mobileno,Genderbutton,Birthdate,Password,profileimg,user;
+public class EditProfileData {
+    String Firstname,Lastname,Mobileno,Birthdate,profileimg,user;
 
-    public NewUserHelper(String firstname, String lastname, String emailid, String mobileno, String genderbutton, String birthdate, String password, String profileimg, String user) {
+    public EditProfileData(String firstname, String lastname, String mobileno, String birthdate, String profileimg, String user) {
         Firstname = firstname;
         Lastname = lastname;
-        Emailid = emailid;
         Mobileno = mobileno;
-        Genderbutton = genderbutton;
         Birthdate = birthdate;
-        Password = password;
         this.profileimg = profileimg;
         this.user = user;
-    }
-
-    public NewUserHelper(String firstname, String lastname, String mobileno, String birthdate, String s) {
-
     }
 
     public String getFirstname() {
@@ -35,14 +28,6 @@ public class NewUserHelper {
         Lastname = lastname;
     }
 
-    public String getEmailid() {
-        return Emailid;
-    }
-
-    public void setEmailid(String emailid) {
-        Emailid = emailid;
-    }
-
     public String getMobileno() {
         return Mobileno;
     }
@@ -51,28 +36,12 @@ public class NewUserHelper {
         Mobileno = mobileno;
     }
 
-    public String getGenderbutton() {
-        return Genderbutton;
-    }
-
-    public void setGenderbutton(String genderbutton) {
-        Genderbutton = genderbutton;
-    }
-
     public String getBirthdate() {
         return Birthdate;
     }
 
     public void setBirthdate(String birthdate) {
         Birthdate = birthdate;
-    }
-
-    public String getPassword() {
-        return Password;
-    }
-
-    public void setPassword(String password) {
-        Password = password;
     }
 
     public String getProfileimg() {

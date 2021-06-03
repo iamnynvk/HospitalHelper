@@ -21,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.hospitalhelper.Data_Holder.EditProfileData;
 import com.example.hospitalhelper.Data_Holder.NewUserHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -226,6 +227,13 @@ public class SignUpScreen extends AppCompatActivity{
 
                                                                         NewUserHelper newUserHelper = new NewUserHelper(Firstname, Lastname, Emailid, Mobileno, Genderbutton, Birthdate, Password, uri.toString(), user);
                                                                         root.child(user).setValue(newUserHelper);
+
+                                                                        // Storedata in Realtime Database
+                                                                        FirebaseDatabase db1 = FirebaseDatabase.getInstance();
+                                                                        DatabaseReference root1 = db1.getReference("ProfileEditData");
+
+                                                                        EditProfileData newUserHelper1 = new EditProfileData(Firstname, Lastname, Mobileno, Birthdate, uri.toString(), user);
+                                                                        root1.child(user).setValue(newUserHelper1);
 
 
                                                                         Toast.makeText(SignUpScreen.this, "Registration Successfull", Toast.LENGTH_LONG).show();

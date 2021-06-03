@@ -147,7 +147,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         //FirebaseDatabase Connection
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference nood = db.getReference();
-        DatabaseReference childR = nood.child("Patients").child(userid);
+        DatabaseReference childR = nood.child("ProfileEditData").child(userid);
 
         childR.addValueEventListener(new ValueEventListener() {
             @Override

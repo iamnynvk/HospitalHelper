@@ -19,7 +19,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.hospitalhelper.Data_Holder.BloodDonateRequestUser;
-import com.example.hospitalhelper.Data_Holder.BloodRequestUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class BloodDonateDetails extends AppCompatActivity {
+public class BloodDonateUser extends AppCompatActivity {
 
     EditText fullnameEt, mobileEt, emailEt, age, bloodgroupET;
     ImageView back_button;
@@ -36,10 +35,11 @@ public class BloodDonateDetails extends AppCompatActivity {
     RadioGroup GenderButtonGroup;
     RadioButton GenderButton;
     Dialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_blood_donate_details);
+        setContentView(R.layout.activity_blood_donate_user);
 
         fullnameEt = findViewById(R.id.fullname_edittext);
         mobileEt = findViewById(R.id.mobile_edittext);
@@ -90,7 +90,7 @@ public class BloodDonateDetails extends AppCompatActivity {
                         //d.dismiss();
                     } else {
                         // Storedata in Realtime Database
-                        ProgressDialog dialog = new ProgressDialog(BloodDonateDetails.this);
+                        ProgressDialog dialog = new ProgressDialog(BloodDonateUser.this);
                         dialog.setTitle("Submitting");
                         dialog.setMessage("Wait...");
                         dialog.show();
@@ -108,8 +108,8 @@ public class BloodDonateDetails extends AppCompatActivity {
                                 root.child(user).setValue(bloodDonateRequestUser);
 
 
-                                Toast.makeText(BloodDonateDetails.this, "Requested", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(BloodDonateDetails.this,HomeScreen.class);
+                                Toast.makeText(BloodDonateUser.this, "Requested", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(BloodDonateUser.this,HomeScreen.class);
                                 startActivity(intent);
                                 finish();
                                 dialog.dismiss();
@@ -190,7 +190,7 @@ public class BloodDonateDetails extends AppCompatActivity {
 
 
     public void onBackPressed(){
-        Intent i = new Intent(BloodDonateDetails.this,HomeScreen.class);
+        Intent i = new Intent(BloodDonateUser.this,HomeScreen.class);
         startActivity(i);
         finish();
     }

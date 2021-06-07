@@ -29,7 +29,7 @@ public class BloodDonate extends AppCompatActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BloodDonate.this,BloodDonateDetails.class);
+                Intent intent = new Intent(BloodDonate.this,BloodDonateUser.class);
                 startActivity(intent);
                 finish();
             }

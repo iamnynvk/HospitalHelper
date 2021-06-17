@@ -7,52 +7,62 @@
     android:background="@color/colorPrimary"
     tools:context=".BloodDonate">
 
+    <RelativeLayout
+        android:id="@+id/Question_back"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/toolbarpannel">
+
         <RelativeLayout
-            android:id="@+id/back_button_relative_blood"
+            android:id="@+id/back_relative"
             android:layout_width="@dimen/size_30dp"
             android:layout_height="@dimen/size_30dp"
-            android:layout_marginTop="@dimen/size_15dp"
-            android:layout_marginLeft="@dimen/size_18dp"
+            android:layout_marginTop="@dimen/size_7dp"
+            android:layout_marginLeft="@dimen/size_15dp"
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/back_button_for"
+                android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_arrow_back" />
         </RelativeLayout>
+    </RelativeLayout>
 
-        <ScrollView
+    <!--<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/Question_back"
+        android:layout_marginTop="-3dp"
+        android:scrollbars="vertical">-->
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:layout_below="@+id/back_button_relative_blood">
+            android:layout_below="@+id/Question_back">
 
             <RelativeLayout
+                android:id="@+id/main_blood"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+                android:layout_height="match_parent">
 
                 <RelativeLayout
+                    android:id="@+id/blood_donate_question_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_23dp"
+                    android:layout_marginEnd="@dimen/size_20dp"
+                    android:layout_marginTop="@dimen/size_12dp">
 
-                    <RelativeLayout
-                        android:id="@+id/blood_donate_question_relative"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/blood_donate_question"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_23dp"
-                        android:layout_marginTop="@dimen/size_10dp">
-
-                        <TextView
-                            android:id="@+id/blood_donate_question"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/montserratregular"
-                            android:text="Question"
-                            android:textColor="@color/title_color"
-                            android:textSize="@dimen/size_25dp"
-                            android:textStyle="bold"/>
+                        android:fontFamily="@font/montserratregular"
+                        android:text="Question"
+                        android:textColor="@color/title_color"
+                        android:textSize="@dimen/size_18dp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -65,41 +75,79 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_20dp"
+                        android:layout_marginEnd="@dimen/size_20dp"
+                        android:layout_marginBottom="@dimen/size_20dp"
+                        android:fontFamily="@font/montserratregular"
                         android:text="Have you donate blood within \nthe 6 month ?"
                         android:textAlignment="center"
-                        android:fontFamily="@font/montserratregular"
-                        android:textStyle="bold"
-                        android:layout_margin="@dimen/size_20dp"
+                        android:textColor="@color/text_color"
                         android:textSize="@dimen/size_15dp"
-                        android:textColor="@color/text_color"/>
+                        android:textStyle="bold" />
                 </RelativeLayout>
 
                 <LinearLayout
+                    android:id="@+id/yesno"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_25dp"
                     android:layout_below="@+id/que_relative"
-                    android:weightSum="2"
-                    android:gravity="center"
                     android:layout_marginTop="@dimen/size_30dp"
-                    android:orientation="horizontal">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <Button
                         android:id="@+id/yes_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/button_style_six"
                         android:layout_marginRight="@dimen/size_30dp"
-                        android:text="Yes"/>
+                        android:background="@drawable/button_style_six"
+                        android:text="Yes" />
 
                     <Button
                         android:id="@+id/no_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/button_style_six"
                         android:layout_marginLeft="@dimen/size_30dp"
-                        android:text="No"/>
+                        android:background="@drawable/button_style_six"
+                        android:text="No" />
                 </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/yesno"
+                    android:background="@drawable/warningbox"
+                    android:layout_marginRight="@dimen/size_10dp"
+                    android:layout_marginLeft="@dimen/size_10dp"
+                    android:layout_marginBottom="@dimen/size_20dp"
+                    android:layout_marginTop="@dimen/size_180dp"
+                    android:layout_alignParentBottom="true">
+
+                    <TextView
+                        android:id="@+id/txt1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Warning :"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginTop="@dimen/size_5dp"
+                        android:layout_marginStart="@dimen/size_20dp"
+                        android:layout_marginEnd="@dimen/size_20dp"
+                        android:layout_marginBottom="@dimen/size_5dp"
+                        android:fontFamily="@font/montserratbold"/>
+
+                    <TextView
+                        android:id="@+id/txt2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Please answer this question honestly\nbecause if you give wrong\ninformation you are at a loss"
+                        android:textColor="@color/colorPrimary"
+                        android:textAlignment="center"
+                        android:layout_below="@+id/txt1"
+                        android:lineSpacingExtra="@dimen/size_5dp"
+                        android:fontFamily="@font/montserratmedium"/>
                 </RelativeLayout>
+
             </RelativeLayout>
-        </ScrollView>
+        </RelativeLayout>
 </RelativeLayout>

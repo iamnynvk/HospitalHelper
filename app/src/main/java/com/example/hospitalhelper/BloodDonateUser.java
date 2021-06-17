@@ -190,7 +190,7 @@ public class BloodDonateUser extends AppCompatActivity {
 
 
     public void onBackPressed(){
-        Intent i = new Intent(BloodDonateUser.this,HomeScreen.class);
+        Intent i = new Intent(BloodDonateUser.this,BloodDonate.class);
         startActivity(i);
         finish();
     }

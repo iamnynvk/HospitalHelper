@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.example.hospitalhelper.Banner_Four;
 import com.example.hospitalhelper.Banner_One;
 import com.example.hospitalhelper.Banner_Three;
 import com.example.hospitalhelper.Banner_Two;
@@ -88,6 +89,9 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
                 }
                 else if(position == 2){
                     Intent i = new Intent(activity,Banner_Three.class);
+                    activity.startActivity(i);
+                }else{
+                    Intent i = new Intent(activity, Banner_Four.class);
                     activity.startActivity(i);
                 }
             }

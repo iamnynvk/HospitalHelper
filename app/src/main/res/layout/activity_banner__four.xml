@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".Banner_Three">
+    tools:context=".Banner_Four">
 
     <RelativeLayout
         android:id="@+id/toolbar_relative_baner1"
@@ -48,7 +48,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Food Canteen"
+                    android:text="Ambulance Service"
                     android:fontFamily="@font/montserratmedium"
                     android:textColor="@color/title_color"
                     android:textSize="@dimen/size_18dp"/>
@@ -65,7 +65,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/size_239dp"
-                    android:src="@drawable/food"
+                    android:src="@drawable/ambulance"
                     android:padding="@dimen/size_12dp"/>
             </RelativeLayout>
 
@@ -87,8 +87,9 @@
                     android:textAlignment="center"
                     android:fontFamily="@font/montserratmedium"
                     android:lineSpacingExtra="@dimen/size_2dp"
-                    android:text="The hospital Canteen is located\nin the hospital to serve the patients, attendants and visitors.\n\nThe hygienic food served in the canteen at affordable rates is found very useful \nfor all those receiving Health-Care services from the hospital.\n\n
-The carteen is open for services between 5:30 AM to 9:30 PM." />
+                    android:text="The Sanjivni Hospital offers 24x7 ambulance facility comparising of two ambulances.\n\n
+Advanced care ambulance, meant for transportation of unstable patients, is equipped with multipara monitor, ventilator, oxygen, suction etc.\n\n
+This ambulance is manned by ACLS/BLS trained doctors, nurses with trained drivers." />
             </RelativeLayout>
 
         </RelativeLayout>

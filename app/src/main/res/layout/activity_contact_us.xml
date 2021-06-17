@@ -7,17 +7,18 @@
     android:background="@color/colorPrimary"
     tools:context=".ContactUs">
 
-
     <RelativeLayout
+        android:id="@+id/Contact_us_back"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="56dp"
+        android:background="@drawable/toolbarpannel">
 
         <RelativeLayout
-            android:id="@+id/back_button_relative_blood"
+            android:id="@+id/back_relative"
             android:layout_width="@dimen/size_30dp"
             android:layout_height="@dimen/size_30dp"
-            android:layout_marginLeft="@dimen/size_18dp"
-            android:layout_marginTop="@dimen/size_15dp"
+            android:layout_marginTop="@dimen/size_7dp"
+            android:layout_marginLeft="@dimen/size_15dp"
             android:gravity="center">
 
             <ImageView
@@ -26,6 +27,17 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_arrow_back" />
         </RelativeLayout>
+    </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/Contact_us_back">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/contact_us_relative"
@@ -33,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/back_button_relative_blood"
             android:layout_marginStart="@dimen/size_23dp"
-            android:layout_marginTop="@dimen/size_10dp">
+            android:layout_marginTop="@dimen/size_12dp">
 
             <TextView
                 android:id="@+id/contact_us_textview"
@@ -42,7 +54,7 @@
                 android:fontFamily="@font/montserratregular"
                 android:text="Contact Us"
                 android:textColor="@color/title_color"
-                android:textSize="@dimen/size_25dp"
+                android:textSize="@dimen/size_18dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -214,4 +226,5 @@
                 android:textSize="@dimen/size_12dp" />
         </RelativeLayout>
     </RelativeLayout>
+        </ScrollView>
 </RelativeLayout>

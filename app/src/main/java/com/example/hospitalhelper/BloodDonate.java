@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class BloodDonate extends AppCompatActivity {
     Button yes,no;
+    ImageView backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +18,14 @@ public class BloodDonate extends AppCompatActivity {
 
         yes = findViewById(R.id.yes_button);
         no = findViewById(R.id.no_button);
+        backButton = findViewById(R.id.back_button);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,5 +44,10 @@ public class BloodDonate extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    public void onBackPressed(){
+        Intent i = new Intent(BloodDonate.this,HomeScreen.class);
+        startActivity(i);
+        finish();
     }
 }

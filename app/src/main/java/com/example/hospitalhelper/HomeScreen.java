@@ -303,6 +303,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 Intent i9 = new Intent(HomeScreen.this,AboutUs.class);
                 startActivity(i9);
                 break;
+
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

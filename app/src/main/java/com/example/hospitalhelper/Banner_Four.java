@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class Banner_Two extends AppCompatActivity {
+public class Banner_Four extends AppCompatActivity {
 
     ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_banner__two);
+        setContentView(R.layout.activity_banner__four);
 
         backButton = findViewById(R.id.back_button_benner1);
 
@@ -26,7 +26,7 @@ public class Banner_Two extends AppCompatActivity {
         });
     }
     public void onBackPressed(){
-        Intent i = new Intent(Banner_Two.this,HomeScreen.class);
+        Intent i = new Intent(Banner_Four.this,HomeScreen.class);
         startActivity(i);
         finish();
     }

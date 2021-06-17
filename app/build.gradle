@@ -74,4 +74,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation 'com.squareup.picasso:picasso:2.5.2'
+
+
+    implementation 'com.firebaseui:firebase-ui-firestore:6.2.0'
+    implementation 'com.google.firebase:firebase-firestore:17.1.2'
 }

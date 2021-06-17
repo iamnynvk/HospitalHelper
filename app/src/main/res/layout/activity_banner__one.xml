@@ -7,57 +7,178 @@
     android:background="@color/colorPrimary"
     tools:context=".Banner_One">
 
+    <RelativeLayout
+        android:id="@+id/toolbar_relative_baner1"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/toolbarpannel">
+
+        <RelativeLayout
+            android:id="@+id/back_relative"
+            android:layout_width="@dimen/size_30dp"
+            android:layout_height="@dimen/size_30dp"
+            android:layout_marginTop="@dimen/size_7dp"
+            android:layout_marginLeft="@dimen/size_15dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/back_button_benner1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_arrow_back" />
+        </RelativeLayout>
+    </RelativeLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical">
+        android:layout_below="@+id/toolbar_relative_baner1">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <RelativeLayout
-                android:id="@+id/back_button_relative"
-                android:layout_width="@dimen/size_30dp"
-                android:layout_height="@dimen/size_30dp"
-                android:layout_marginTop="@dimen/size_15dp"
-                android:layout_marginLeft="@dimen/size_18dp"
-                android:gravity="center">
+                android:id="@+id/text_banner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_5dp"
+                android:layout_marginStart="@dimen/size_20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vaccination Available Here!"
+                    android:fontFamily="@font/montserratmedium"
+                    android:textColor="@color/title_color"
+                    android:textSize="@dimen/size_18dp"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/image_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_banner1">
 
                 <ImageView
-                    android:id="@+id/back_button_benner1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_arrow_back" />
+                    android:layout_height="@dimen/size_239dp"
+                    android:src="@drawable/vaccine"
+                    android:padding="@dimen/size_12dp"/>
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/back_button_relative"
-                android:layout_marginTop="@dimen/size_10dp">
+                android:layout_below="@+id/image_banner"
+                android:layout_marginStart="@dimen/size_20dp"
+                android:layout_marginEnd="@dimen/size_20dp"
+                android:layout_marginTop="@dimen/size_15dp">
 
                 <TextView
-                    android:id="@+id/textview_vaccination"
+                    android:id="@+id/txt1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Vaccination Available"
-                    android:fontFamily="@font/montserratregular"
-                    android:textSize="@dimen/size_20dp"
-                    android:layout_marginStart="@dimen/size_35dp"
-                    android:textColor="@color/title_color" />
+                    android:textSize="@dimen/size_13dp"
+                    android:textColor="@color/text_color"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/montserratmedium"
+                    android:lineSpacingExtra="@dimen/size_5dp"
+                    android:text="Vaccination Available As A Goverment\nRule All Detail Describe Here... "/>
 
-                <ImageView
+                <LinearLayout
+                    android:id="@+id/time_linear"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_200dp"
-                    android:layout_below="@+id/textview_vaccination"
-                    android:src="@drawable/vaccine"/>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/size_10dp"
+                    android:weightSum="2">
 
+                    <TextView
+                        android:id="@+id/txt2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserratmedium"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/intro_title_color"
+                        android:text="Time :"
+                        android:textSize="@dimen/size_13dp"/>
 
+                    <TextView
+                        android:id="@+id/txt3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/size_12dp"
+                        android:textColor="@color/intro_desription_color"
+                        android:text="07:00 Am to 5:00 PM"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/place_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/time_linear"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/size_10dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/txt4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserratmedium"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/intro_title_color"
+                        android:text="Place :"
+                        android:textSize="@dimen/size_13dp"/>
+
+                    <TextView
+                        android:id="@+id/txt5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/size_12dp"
+                        android:textColor="@color/intro_desription_color"
+                        android:text="Sruhad Complex, 3rd Floor Doctor House\nnear Devi Cinema, Ahmedabad - 382330\nGujarat"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/type_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/place_relative"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/size_10dp"
+                    android:weightSum="2"
+                    android:layout_marginBottom="@dimen/size_20dp">
+
+                    <TextView
+                        android:id="@+id/txt6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserratmedium"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/intro_title_color"
+                        android:text="Type of Vaccine :"
+                        android:textSize="@dimen/size_13dp"/>
+
+                    <TextView
+                        android:id="@+id/txt7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/size_12dp"
+                        android:textColor="@color/intro_desription_color"
+                        android:text="CovaXin | CoviShild"/>
+
+                </LinearLayout>
 
             </RelativeLayout>
+
         </RelativeLayout>
     </ScrollView>
-
-
 </RelativeLayout>

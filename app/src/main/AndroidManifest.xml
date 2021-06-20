@@ -15,7 +15,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Banner_Four"></activity>
+        <activity android:name=".Doctor_Detail"></activity>
+        <activity android:name=".Banner_Four" />
         <activity android:name=".BloodDonateUser" />
         <activity android:name=".ProfileEdit" />
         <activity android:name=".AboutUs" />

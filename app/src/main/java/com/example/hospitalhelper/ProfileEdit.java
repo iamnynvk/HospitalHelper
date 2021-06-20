@@ -178,6 +178,7 @@ public class ProfileEdit extends AppCompatActivity {
 
             ProgressDialog dialog = new ProgressDialog(ProfileEdit.this);
             dialog.setTitle("File Uploader");
+            dialog.setCancelable(false);
             dialog.show();
 
             if (uri != null) {

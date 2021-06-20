@@ -164,6 +164,7 @@ public class SignUpScreen extends AppCompatActivity{
             ProgressDialog dialog1 = new ProgressDialog(SignUpScreen.this);
             dialog1.setMessage("Please wait check in Server" +
                     " You are already exist or not!");
+            dialog1.setCancelable(false);
             dialog1.show();
 
             // Mobile No check Exist or not
@@ -204,6 +205,7 @@ public class SignUpScreen extends AppCompatActivity{
 
                                             ProgressDialog dialog = new ProgressDialog(SignUpScreen.this);
                                             dialog.setTitle("File Uploader");
+                                            dialog.setCancelable(false);
                                             dialog.show();
 
                                             if (resultUri != null) {

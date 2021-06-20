@@ -98,6 +98,8 @@
                         android:id="@+id/editprofile_photo_set"
                         android:layout_width="@dimen/size_150dp"
                         android:layout_height="@dimen/size_150dp"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="@color/intro_desription_color"
                         android:src="@drawable/profile_photo"/>
                 </RelativeLayout>
 

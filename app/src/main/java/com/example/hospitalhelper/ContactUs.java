@@ -72,6 +72,7 @@ public class ContactUs extends AppCompatActivity {
             ProgressDialog dialog = new ProgressDialog(ContactUs.this);
             dialog.setTitle("Submit");
             dialog.setMessage("Wait...");
+            dialog.setCancelable(false);
             dialog.show();
 
             final Handler handler = new Handler();

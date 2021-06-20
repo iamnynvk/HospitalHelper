@@ -93,6 +93,7 @@ public class BloodRequest extends AppCompatActivity {
                         ProgressDialog dialog = new ProgressDialog(BloodRequest.this);
                         dialog.setTitle("Submitting");
                         dialog.setMessage("Wait...");
+                        dialog.setCancelable(false);
                         dialog.show();
 
                         final Handler handler = new Handler();

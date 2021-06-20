@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".Doctor_Detail">
+    tools:context=".WatchProfileImage">
 
     <RelativeLayout
         android:id="@+id/Doctor_back"
@@ -29,31 +29,26 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Doctor_back">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/Doctor_back">
 
             <RelativeLayout
                 android:id="@+id/doctor_image_relative"
+                android:padding="@dimen/size_10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_10dp"
-                android:layout_marginTop="@dimen/size_15dp"
-                android:layout_marginEnd="@dimen/size_10dp">
+                android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/user_image_full"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_239dp"
-                    android:background="@drawable/curve_corner_image"
+                    android:layout_height="match_parent"
                     android:padding="@dimen/size_5dp"
                     android:src="@drawable/one"/>
             </RelativeLayout>
 
         </RelativeLayout>
-    </ScrollView>
 </RelativeLayout>

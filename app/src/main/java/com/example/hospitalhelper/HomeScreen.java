@@ -14,6 +14,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import com.example.hospitalhelper.Adapter.DoctorListAdapter;
 import com.example.hospitalhelper.Adapter.SliderAdapter;
 import com.example.hospitalhelper.Data_Holder.DoctorListHolder;
+import com.example.hospitalhelper.Data_Holder.EditProfileData;
 import com.example.hospitalhelper.Data_Holder.ImageSliderItem;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -122,6 +124,15 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomeScreen.this,BloodDonate.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        profileImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomeScreen.this, WatchProfileImage.class);
                 startActivity(i);
                 finish();
             }
@@ -280,6 +291,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 Intent i3 = new Intent(HomeScreen.this, Doctor.class);
                 startActivity(i3);
                 break;
+
 
             case R.id.blood_request:
                 Intent i4 = new Intent(HomeScreen.this, BloodRequest.class);

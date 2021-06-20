@@ -71,6 +71,14 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserProfile.this,WatchProfileImage.class));
+                finish();
+            }
+        });
+
         DataShow();
 
     }

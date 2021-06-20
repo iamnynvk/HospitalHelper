@@ -33,7 +33,7 @@
             android:textColor="@color/title_color"
             android:textSize="@dimen/size_15dp"
             android:layout_marginStart="@dimen/size_10dp"
-            android:layout_marginEnd="@dimen/size_20dp"/>
+            android:layout_marginEnd="@dimen/size_5dp"/>
 
         <TextView
             android:id="@+id/doctor_qualification"
@@ -42,7 +42,7 @@
             android:layout_toRightOf="@+id/doctor_image"
             android:layout_below="@+id/doctor_name"
             android:layout_marginStart="@dimen/size_10dp"
-            android:layout_marginEnd="@dimen/size_20dp"
+            android:layout_marginEnd="@dimen/size_5dp"
             android:layout_marginTop="@dimen/size_7dp"
             android:text="Qualification"
             android:textColor="@color/title_color"
@@ -57,7 +57,7 @@
             android:layout_below="@+id/doctor_qualification"
             android:layout_marginTop="@dimen/size_7dp"
             android:layout_marginStart="@dimen/size_10dp"
-            android:layout_marginEnd="@dimen/size_20dp"
+            android:layout_marginEnd="@dimen/size_5dp"
             android:text="Type"
             android:textColor="@color/title_color"
             android:textSize="@dimen/size_13dp"
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/doctor_image"
-            android:layout_marginTop="@dimen/size_15dp"
+            android:layout_marginTop="@dimen/size_18dp"
             android:text="Time"
             android:layout_marginStart="@dimen/size_20dp"
             android:fontFamily="@font/montserratmedium"
@@ -94,7 +94,7 @@
             android:layout_below="@+id/doctor_image"
             android:layout_toRightOf="@+id/doctor_time"
             android:layout_marginLeft="@dimen/size_10dp"
-            android:layout_marginTop="@dimen/size_15dp"
+            android:layout_marginTop="@dimen/size_18dp"
             android:text="Available Days"
             android:textAlignment="textEnd"
             android:layout_marginEnd="@dimen/size_20dp"

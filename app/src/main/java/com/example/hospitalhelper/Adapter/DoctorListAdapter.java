@@ -1,9 +1,12 @@
 package com.example.hospitalhelper.Adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,42 +20,87 @@ import com.example.hospitalhelper.Doctor_Detail;
 import com.example.hospitalhelper.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class DoctorListAdapter extends FirebaseRecyclerAdapter<DoctorListHolder,DoctorListAdapter.myviewholder> {
+public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.ViewHolder> {
 
-    public DoctorListAdapter(@NonNull FirebaseRecyclerOptions<DoctorListHolder> options) {
-        super(options);
-    }
+    private static final String TAG = "AddProduct_RecycleAdapter";
 
-    @Override
-    protected void onBindViewHolder(@NonNull myviewholder myviewholder, int i, @NonNull DoctorListHolder doctorListHolder) {
+    Context mcontext;
+    List<DoctorListHolder> DoctorList;
 
-        myviewholder.doctorName.setText(doctorListHolder.getDoctorname());
-        myviewholder.doctorQualification.setText(doctorListHolder.getQualification());
-        myviewholder.doctorType.setText(doctorListHolder.getType());
-        myviewholder.doctorTime.setText(doctorListHolder.getTime());
-        myviewholder.doctorDays.setText(doctorListHolder.getDays());
-
-        Glide.with(myviewholder.doctorImage.getContext()).load(doctorListHolder.getDoctorurl()).into(myviewholder.doctorImage);
+    public DoctorListAdapter(Context mcontext, List<DoctorListHolder> doctorList) {
+        this.mcontext = mcontext;
+        DoctorList = doctorList;
     }
 
     @NonNull
     @Override
-    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.doctor_list_view,parent,false);
-        return new myviewholder(view);
+
+        return new ViewHolder(view);
     }
 
-    class myviewholder extends RecyclerView.ViewHolder{
+    @Override
+    public void onBindViewHolder(@NonNull DoctorListAdapter.ViewHolder holder, int position) {
+        holder.doctorName.setText(DoctorList.get(position).getDoctorname());
+        holder.doctorQualification.setText(DoctorList.get(position).getQualification());
+        holder.doctorType.setText(DoctorList.get(position).getType());
+        holder.doctorTime.setText(DoctorList.get(position).getTime());
+        holder.doctorDays.setText(DoctorList.get(position).getDays());
 
+        /* Picasso is Slower than Glide i don't know why?
+        Picasso.get().load(DoctorList.get(position).getDoctorurl())
+                .into(holder.doctorImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                    }
+                });*/
+
+        // Glide is Faster Fatching Image on Server's
+        Glide.with(holder.doctorImage.getContext()).load(DoctorList.get(position).getDoctorurl()).into(holder.doctorImage);
+
+        holder.cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(v.getContext(), Doctor_Detail.class);
+
+                in.putExtra("DoctorImage",DoctorList.get(position).getDoctorurl());
+                in.putExtra("DoctorName",DoctorList.get(position).getDoctorname());
+                in.putExtra("DoctorQualification",DoctorList.get(position).getQualification());
+                in.putExtra("DoctorType",DoctorList.get(position).getType());
+                in.putExtra("DoctorTime",DoctorList.get(position).getTime());
+                in.putExtra("DoctorDays",DoctorList.get(position).getDays());
+
+                v.getContext().startActivity(in);
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return DoctorList.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardview;
         RelativeLayout doctorRelative;
         CircleImageView doctorImage;
         TextView doctorName,doctorQualification,doctorType,doctorTime,doctorDays;
 
-        public myviewholder(@NonNull View itemView) {
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             cardview = (CardView)itemView.findViewById(R.id.cardView);

@@ -46,6 +46,7 @@ dependencies {
     // Firebase Authentication
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.google.firebase:firebase-auth:10.0.1'
 
     // Firebase Analytics
     implementation 'com.google.firebase:firebase-analytics'
@@ -79,4 +80,11 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:6.2.0'
     implementation 'com.firebaseui:firebase-ui-database:4.3.2'
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
+    implementation 'com.google.firebase:firebase-bom:26.0.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+
+
+
 }

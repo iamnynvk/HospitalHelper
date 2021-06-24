@@ -15,7 +15,10 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".WatchProfileImage"></activity>
+        <activity android:name=".ForgotpasswordActivity"></activity>
+        <activity android:name=".ForgotpasswordOTPVerification" />
+        <activity android:name=".ForgotPasswordOTPSend" />
+        <activity android:name=".WatchProfileImage" />
         <activity android:name=".Doctor_Detail" />
         <activity android:name=".Banner_Four" />
         <activity android:name=".BloodDonateUser" />
@@ -31,7 +34,6 @@
         <activity android:name=".Banner_Three" />
         <activity android:name=".Banner_Two" />
         <activity android:name=".Banner_One" />
-        <activity android:name=".ForgotPasswordScreen" />
         <activity android:name=".SignUpScreen" />
         <activity
             android:name=".HomeScreen"

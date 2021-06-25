@@ -51,6 +51,7 @@ public class UserProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(UserProfile.this,ProfileEdit.class));
+                overridePendingTransition(0,0);
                 finish();
             }
         });
@@ -60,6 +61,7 @@ public class UserProfile extends AppCompatActivity {
             public void onClick(View v) {
                 Utility.setIsLogin(UserProfile.this,"");
                 startActivity(new Intent(UserProfile.this,LogInScreen.class));
+                overridePendingTransition(0,0);
                 finish();
             }
         });
@@ -74,7 +76,8 @@ public class UserProfile extends AppCompatActivity {
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserProfile.this,WatchProfileImage.class));
+                startActivity(new Intent(UserProfile.this,WatchProfileImageAgain.class));
+                overridePendingTransition(0,0);
                 finish();
             }
         });
@@ -129,6 +132,7 @@ public class UserProfile extends AppCompatActivity {
     public void onBackPressed(){
         Intent i = new Intent(UserProfile.this,HomeScreen.class);
         startActivity(i);
+        overridePendingTransition(0,0);
         finish();
     }
 }

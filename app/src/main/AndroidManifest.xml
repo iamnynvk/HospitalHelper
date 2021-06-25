@@ -15,7 +15,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ForgotPasswordScreen"></activity>
+        <activity android:name=".WatchProfileImageAgain"></activity>
+        <activity android:name=".ForgotPasswordScreen" />
         <activity android:name=".ForgotpasswordActivity" />
         <activity android:name=".ForgotpasswordOTPVerification" />
         <activity android:name=".ForgotPasswordOTPSend" />

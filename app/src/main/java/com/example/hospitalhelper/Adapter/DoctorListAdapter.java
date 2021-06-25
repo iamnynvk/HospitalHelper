@@ -81,6 +81,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
                 in.putExtra("DoctorTime",DoctorList.get(position).getTime());
 
                 v.getContext().startActivity(in);
+
             }
         });
 

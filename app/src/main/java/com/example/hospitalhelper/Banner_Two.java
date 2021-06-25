@@ -28,6 +28,7 @@ public class Banner_Two extends AppCompatActivity {
     public void onBackPressed(){
         Intent i = new Intent(Banner_Two.this,HomeScreen.class);
         startActivity(i);
+        overridePendingTransition(0,0);
         finish();
     }
 }

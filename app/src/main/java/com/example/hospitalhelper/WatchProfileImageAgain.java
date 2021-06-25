@@ -15,9 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
-public class WatchProfileImage extends AppCompatActivity {
+public class WatchProfileImageAgain extends AppCompatActivity {
 
     ImageView backButton;
     ImageView userImage;
@@ -25,7 +24,7 @@ public class WatchProfileImage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_watch_profile_image);
+        setContentView(R.layout.activity_watch_profile_image_again);
 
         backButton = findViewById(R.id.back_button);
         userImage = findViewById(R.id.user_image_full);
@@ -38,7 +37,6 @@ public class WatchProfileImage extends AppCompatActivity {
         });
 
         DataShow();
-
     }
 
     private void DataShow() {
@@ -56,7 +54,7 @@ public class WatchProfileImage extends AppCompatActivity {
                 //set profile in circleImageview
                 String url = snapshot.child("profileimg").getValue().toString();
                 /*Picasso.get().load(url).into(userImage);*/
-                Glide.with(WatchProfileImage.this).load(url).into(userImage);
+                Glide.with(WatchProfileImageAgain.this).load(url).into(userImage);
             }
 
             @Override
@@ -67,7 +65,7 @@ public class WatchProfileImage extends AppCompatActivity {
     }
 
     public void onBackPressed(){
-        Intent i = new Intent(WatchProfileImage.this,HomeScreen.class);
+        Intent i = new Intent(WatchProfileImageAgain.this,UserProfile.class);
         startActivity(i);
         overridePendingTransition(0,0);
         finish();

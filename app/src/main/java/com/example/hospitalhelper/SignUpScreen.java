@@ -108,6 +108,7 @@ public class SignUpScreen extends AppCompatActivity{
                                 Intent intent = new Intent(Intent.ACTION_PICK);
                                 intent.setType("image/*");
                                 startActivityForResult(Intent.createChooser(intent,"Select Profile Photo"),1);
+                                overridePendingTransition(0,0);
                             }
 
                             @Override
@@ -242,6 +243,7 @@ public class SignUpScreen extends AppCompatActivity{
 
                                                                         Intent i = new Intent(SignUpScreen.this, LogInScreen.class);
                                                                         startActivity(i);
+                                                                        overridePendingTransition(0,0);
                                                                         finish();
                                                                     }
                                                                 });
@@ -349,6 +351,7 @@ public class SignUpScreen extends AppCompatActivity{
     public void onBackPressed(){
         Intent i = new Intent(SignUpScreen.this,LogInScreen.class);
         startActivity(i);
+        overridePendingTransition(0,0);
         finish();
     }
 }

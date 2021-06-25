@@ -77,6 +77,9 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     // Firebase
     FirebaseAuth mAuth;
 
+    // Backpressed
+    int counter = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +110,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             public void onClick(View v) {
                 Intent i = new Intent(HomeScreen.this,UserProfile.class);
                 startActivity(i);
+                overridePendingTransition(0,0);
                 finish();
             }
         });
@@ -116,6 +120,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             public void onClick(View v) {
                 Intent i = new Intent(HomeScreen.this,BloodRequest.class);
                 startActivity(i);
+                overridePendingTransition(0,0);
                 finish();
             }
         });
@@ -125,6 +130,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             public void onClick(View v) {
                 Intent i = new Intent(HomeScreen.this,BloodDonate.class);
                 startActivity(i);
+                overridePendingTransition(0,0);
                 finish();
             }
         });
@@ -134,6 +140,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             public void onClick(View v) {
                 Intent i = new Intent(HomeScreen.this, WatchProfileImage.class);
                 startActivity(i);
+                overridePendingTransition(0,0);
                 finish();
             }
         });
@@ -197,15 +204,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         }else if(timeOfDay >= 16 && timeOfDay < 24) {
             greetingTime.setText("Good Evening");
         }
-       /* Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-        String formattedDate = df.format(c.getTime());
-
-        if(formattedDate.equals("00:00:00")&&formattedDate.equals("12:00:00")) {
-            greetingTime.setText("Good Morning");
-        }else{
-            greetingTime.setText("Good Evening");
-        }*/
     }
 
     private void VerifyEmailID() {
@@ -278,53 +276,76 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                Intent i1 = new Intent(HomeScreen.this, HomeScreen.class);
-                startActivity(i1);
-                break;
+                return true;
 
             case R.id.profile:
-                Intent i2 = new Intent(HomeScreen.this, UserProfile.class);
+                Intent i2 = new Intent(getApplicationContext(), UserProfile.class);
                 startActivity(i2);
-                break;
+                overridePendingTransition(0,0);
+                finish();
+                return true;
 
             case R.id.doctor:
-                Intent i3 = new Intent(HomeScreen.this, Doctor.class);
+                Intent i3 = new Intent(getApplicationContext(), Doctor.class);
                 startActivity(i3);
-                break;
-
+                overridePendingTransition(0,0);
+                finish();
+                return true;
 
             case R.id.blood_request:
-                Intent i4 = new Intent(HomeScreen.this, BloodRequest.class);
+                Intent i4 = new Intent(getApplicationContext(), BloodRequest.class);
                 startActivity(i4);
-                break;
+                overridePendingTransition(0,0);
+                finish();
+                return true;
 
             case R.id.blood_donate:
-                Intent i5 = new Intent(this,BloodDonate.class);
+                Intent i5 = new Intent(getApplicationContext(),BloodDonate.class);
                 startActivity(i5);
-                break;
+                overridePendingTransition(0,0);
+                finish();
+                return true;
 
             case R.id.facilities:
-                Intent i6 = new Intent(HomeScreen.this,Facilities.class);
+                Intent i6 = new Intent(getApplicationContext(),Facilities.class);
                 startActivity(i6);
-                break;
+                overridePendingTransition(0,0);
+                finish();
+                return true;
 
             case R.id.videos:
-                Intent i7 = new Intent(HomeScreen.this,Videos.class);
+                Intent i7 = new Intent(getApplicationContext(),Videos.class);
                 startActivity(i7);
-                break;
+                overridePendingTransition(0,0);
+                finish();
+                return true;
 
             case R.id.contact_us:
-                Intent i8 = new Intent(HomeScreen.this,ContactUs.class);
+                Intent i8 = new Intent(getApplicationContext(),ContactUs.class);
                 startActivity(i8);
-                break;
+                overridePendingTransition(0,0);
+                finish();
+                return true;
 
             case R.id.about_us:
-                Intent i9 = new Intent(HomeScreen.this,AboutUs.class);
+                Intent i9 = new Intent(getApplicationContext(),AboutUs.class);
                 startActivity(i9);
-                break;
+                overridePendingTransition(0,0);
+                finish();
+                return true;
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+    @Override
+    public void onBackPressed() {
+        counter++;
+        if (counter == 1){
+            Toast.makeText(this,"double backpress exit the apps",Toast.LENGTH_LONG).show();
+        }
+        else if (counter == 3){
+            super.onBackPressed();
+        }
     }
 }

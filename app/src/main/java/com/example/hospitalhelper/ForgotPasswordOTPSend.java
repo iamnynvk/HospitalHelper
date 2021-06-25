@@ -101,6 +101,7 @@ public class ForgotPasswordOTPSend extends AppCompatActivity {
                                             i.putExtra("mobile",inputMobileNo.getText().toString());
                                             i.putExtra("verificationId",verificationId);
                                             startActivity(i);
+                                            overridePendingTransition(0,0);
                                             finish();
                                         }
                                     }
@@ -125,6 +126,7 @@ public class ForgotPasswordOTPSend extends AppCompatActivity {
     public void onBackPressed(){
         Intent i = new Intent(ForgotPasswordOTPSend.this,LogInScreen.class);
         startActivity(i);
+        overridePendingTransition(0,0);
         finish();
     }
 }

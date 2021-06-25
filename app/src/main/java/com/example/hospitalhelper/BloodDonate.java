@@ -32,6 +32,7 @@ public class BloodDonate extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(BloodDonate.this,HomeScreen.class);
                 startActivity(intent);
+                overridePendingTransition(0,0);
                 finish();
             }
         });
@@ -41,6 +42,7 @@ public class BloodDonate extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(BloodDonate.this,BloodDonateUser.class);
                 startActivity(intent);
+                overridePendingTransition(0,0);
                 finish();
             }
         });
@@ -48,6 +50,7 @@ public class BloodDonate extends AppCompatActivity {
     public void onBackPressed(){
         Intent i = new Intent(BloodDonate.this,HomeScreen.class);
         startActivity(i);
+        overridePendingTransition(0,0);
         finish();
     }
 }

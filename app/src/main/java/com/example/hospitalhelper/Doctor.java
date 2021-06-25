@@ -108,6 +108,7 @@ public class Doctor extends AppCompatActivity {
     public void onBackPressed(){
         Intent i = new Intent(Doctor.this,HomeScreen.class);
         startActivity(i);
+        overridePendingTransition(0,0);
         finish();
     }
 }

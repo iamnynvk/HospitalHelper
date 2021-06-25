@@ -93,6 +93,7 @@ public class ProfileEdit extends AppCompatActivity {
                                 Intent intent = new Intent(Intent.ACTION_PICK);
                                 intent.setType("image/*");
                                 startActivityForResult(Intent.createChooser(intent,"Select Profile Photo"),1);
+                                overridePendingTransition(0,0);
                             }
 
                             @Override
@@ -208,6 +209,7 @@ public class ProfileEdit extends AppCompatActivity {
 
                                         Intent i = new Intent(ProfileEdit.this, UserProfile.class);
                                         startActivity(i);
+                                        overridePendingTransition(0,0);
                                         finish();
                                     }
                                 });
@@ -275,6 +277,7 @@ public class ProfileEdit extends AppCompatActivity {
     public void onBackPressed(){
         Intent i = new Intent(ProfileEdit.this,UserProfile.class);
         startActivity(i);
+        overridePendingTransition(0,0);
         finish();
     }
 }

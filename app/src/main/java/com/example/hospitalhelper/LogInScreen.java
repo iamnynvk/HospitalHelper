@@ -59,6 +59,7 @@ public class LogInScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LogInScreen.this,ForgotPasswordScreen.class);
                 startActivity(i);
+                overridePendingTransition(0,0);
                 finish();
             }
         });
@@ -68,6 +69,7 @@ public class LogInScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LogInScreen.this,SignUpScreen.class);
                 startActivity(i);
+                overridePendingTransition(0,0);
                 finish();
             }
         });
@@ -104,6 +106,7 @@ public class LogInScreen extends AppCompatActivity {
                                 Utility.setIsLogin(getApplicationContext(),"isLogin");
                                 Intent intent = new Intent(LogInScreen.this,HomeScreen.class);
                                 startActivity(intent);
+                                overridePendingTransition(0,0);
                                 finish();
                             }
                             else {

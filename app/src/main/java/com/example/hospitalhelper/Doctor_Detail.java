@@ -8,11 +8,13 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hospitalhelper.Data_Holder.DoctorAppoimentDataHolder;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,7 +46,6 @@ public class Doctor_Detail extends AppCompatActivity {
     TextView doctorTime;
 
     String FirstName,LastrName,MobileNo,BirthDate,url;
-    ProgressDialog mprogress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,6 @@ public class Doctor_Detail extends AppCompatActivity {
         doctorTime = findViewById(R.id.doctor_time_txt);
         bookDoctor = findViewById(R.id.bookofdoctor);
         backButton = findViewById(R.id.back_button);
-        ProgressDialog dialog = new ProgressDialog(Doctor_Detail.this);
 
 
         // Date Picker set in Activity
@@ -168,47 +168,57 @@ public class Doctor_Detail extends AppCompatActivity {
     }
 
     private void FirebaseFatchAndUploadData() {
-        //UserID
-        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        ProgressDialog dialog = new ProgressDialog(Doctor_Detail.this);
+        dialog.setTitle("Submitting");
+        dialog.setMessage("one more time click BOOK APPOINMENT");
+        dialog.setCancelable(false);
+        dialog.show();
 
-        //FirebaseDatabase Connection
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference();
-        DatabaseReference childR = reference.child("ProfileEditData").child(userid);
-
-        childR.addValueEventListener(new ValueEventListener() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //Fatch User ALL Data
-                FirstName = String.valueOf(snapshot.child("firstname").getValue());
-                LastrName = String.valueOf(snapshot.child("lastname").getValue());
-                MobileNo = String.valueOf(snapshot.child("mobileno").getValue());
-                BirthDate = String.valueOf(snapshot.child("birthdate").getValue());
-                //set profile in circleImageview
-                url = snapshot.child("profileimg").getValue().toString();
+            public void run() {
+                //UserID
+                String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                //FirebaseDatabase Connection
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference reference = database.getReference();
+                DatabaseReference childR = reference.child("ProfileEditData").child(userid);
+
+                childR.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        //Fatch User ALL Data
+                        FirstName = String.valueOf(snapshot.child("firstname").getValue());
+                        LastrName = String.valueOf(snapshot.child("lastname").getValue());
+                        MobileNo = String.valueOf(snapshot.child("mobileno").getValue());
+                        BirthDate = String.valueOf(snapshot.child("birthdate").getValue());
+                        //set profile in circleImageview
+                        url = snapshot.child("profileimg").getValue().toString();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+
+                // Store in Realtime Database #RootName : DoctorAppoimentDatail
+                database = FirebaseDatabase.getInstance();
+                reference = database.getReference("DoctorAppoimentDatail");
+
+                String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                DoctorAppoimentDataHolder appoimentDataHolder = new DoctorAppoimentDataHolder(FirstName,LastrName,MobileNo,BirthDate,url,user,DoctorBookDate,DoctorName,DoctorQualification,DoctorType,DoctorTime,DoctorImage);
+                reference.child(user).setValue(appoimentDataHolder);
+                dialog.dismiss();
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-        // Store in Realtime Database #RootName : DoctorAppoimentDatail
-
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference root = db.getReference("DoctorAppoimentDatail");
-
-        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        DoctorAppoimentDataHolder appoimentDataHolder = new DoctorAppoimentDataHolder(FirstName,LastrName,MobileNo,BirthDate,url,user,DoctorBookDate,DoctorName,DoctorQualification,DoctorType,DoctorTime,DoctorImage);
-        root.child(user).setValue(appoimentDataHolder);
-
+        },2500);
     }
     public void onBackPressed(){
         Intent i = new Intent(Doctor_Detail.this,Doctor.class);
         startActivity(i);
+        overridePendingTransition(0,0);
         finish();
     }
 }

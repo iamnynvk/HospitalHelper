@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,8 @@ public class ForgotPasswordScreen extends AppCompatActivity {
     Button forgot_btn_send;
     private ProgressDialog mprogress;
     private FirebaseAuth mAuth;
+    ImageView backButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,8 @@ public class ForgotPasswordScreen extends AppCompatActivity {
 
         forgot_email_edittext = findViewById(R.id.forgot_email_edittext);
         forgot_btn_send = findViewById(R.id.forgot_btn_send);
+        backButton = findViewById(R.id.back_button);
+
         mprogress = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
@@ -40,6 +45,13 @@ public class ForgotPasswordScreen extends AppCompatActivity {
             public void onClick(View v) {
 
                 resetpassword();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -69,6 +81,7 @@ public class ForgotPasswordScreen extends AppCompatActivity {
                     Toast.makeText(ForgotPasswordScreen.this,"Check your email to reset your password!",Toast.LENGTH_LONG).show();
                     Intent intent =new Intent(ForgotPasswordScreen.this,LogInScreen.class);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
                     finish();
                 }
                 else
@@ -79,5 +92,12 @@ public class ForgotPasswordScreen extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onBackPressed(){
+        Intent i = new Intent(ForgotPasswordScreen.this,LogInScreen.class);
+        startActivity(i);
+        overridePendingTransition(0,0);
+        finish();
     }
 }

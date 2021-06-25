@@ -82,17 +82,21 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
                 if (position == 0){
                     Intent i = new Intent(activity,Banner_One.class);
                     activity.startActivity(i);
+                    activity.overridePendingTransition(0,0);
                 }
                 else if(position == 1){
                     Intent i = new Intent(activity,Banner_Two.class);
                     activity.startActivity(i);
+                    activity.overridePendingTransition(0,0);
                 }
                 else if(position == 2){
                     Intent i = new Intent(activity,Banner_Three.class);
                     activity.startActivity(i);
+                    activity.overridePendingTransition(0,0);
                 }else{
                     Intent i = new Intent(activity, Banner_Four.class);
                     activity.startActivity(i);
+                    activity.overridePendingTransition(0,0);
                 }
             }
         });

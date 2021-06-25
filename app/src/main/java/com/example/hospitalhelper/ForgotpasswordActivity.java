@@ -59,6 +59,7 @@ public class ForgotpasswordActivity extends AppCompatActivity {
 
                                 Intent i = new Intent(ForgotpasswordActivity.this, LogInScreen.class);
                                 startActivity(i);
+                                overridePendingTransition(0,0);
                                 finish();
 
                             }

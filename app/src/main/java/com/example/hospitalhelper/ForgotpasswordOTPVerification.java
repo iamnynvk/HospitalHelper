@@ -152,6 +152,7 @@ public class ForgotpasswordOTPVerification extends AppCompatActivity {
     public void onBackPressed(){
         Intent i = new Intent(ForgotpasswordOTPVerification.this,ForgotPasswordOTPSend.class);
         startActivity(i);
+        overridePendingTransition(0,0);
         finish();
     }
 

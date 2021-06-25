@@ -112,6 +112,7 @@ public class BloodDonateUser extends AppCompatActivity {
                                 Toast.makeText(BloodDonateUser.this, "Requested", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(BloodDonateUser.this,HomeScreen.class);
                                 startActivity(intent);
+                                overridePendingTransition(0,0);
                                 finish();
                                 dialog.dismiss();
                             }
@@ -193,6 +194,7 @@ public class BloodDonateUser extends AppCompatActivity {
     public void onBackPressed(){
         Intent i = new Intent(BloodDonateUser.this,BloodDonate.class);
         startActivity(i);
+        overridePendingTransition(0,0);
         finish();
     }
 

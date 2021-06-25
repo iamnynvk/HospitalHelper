@@ -92,6 +92,7 @@ public class ContactUs extends AppCompatActivity {
                     Toast.makeText(ContactUs.this, "Submitted", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(ContactUs.this,HomeScreen.class);
                     startActivity(intent);
+                    overridePendingTransition(0,0);
                     finish();
                     dialog.dismiss();
                 }
@@ -154,6 +155,7 @@ public class ContactUs extends AppCompatActivity {
     public void onBackPressed(){
         Intent i = new Intent(ContactUs.this,HomeScreen.class);
         startActivity(i);
+        overridePendingTransition(0,0);
         finish();
     }
 }

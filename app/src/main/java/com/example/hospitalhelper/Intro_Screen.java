@@ -101,6 +101,7 @@ public class Intro_Screen extends AppCompatActivity {
                 //open main activity
                 Intent mainActivity = new Intent(getApplicationContext(),LogInScreen.class);
                 startActivity(mainActivity);
+                overridePendingTransition(0,0);
                 savePrefsData();
                 finish();
             }

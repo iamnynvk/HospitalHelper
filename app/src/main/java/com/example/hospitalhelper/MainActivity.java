@@ -38,16 +38,19 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("task","=====>"+Utility.getIsLogin(getApplicationContext()).trim().length());
                         Intent mainActivity = new Intent(getApplicationContext(),HomeScreen.class );
                         startActivity(mainActivity);
+                        overridePendingTransition(0,0);
                         finish();
                     }else
                     {
                         Intent mainActivity = new Intent(getApplicationContext(),LogInScreen.class );
                         startActivity(mainActivity);
+                        overridePendingTransition(0,0);
                         finish();
                     }
                 }else{
                     Intent mainActivity = new Intent(getApplicationContext(),Intro_Screen.class );
                     startActivity(mainActivity);
+                    overridePendingTransition(0,0);
                     finish();
                 }
             }

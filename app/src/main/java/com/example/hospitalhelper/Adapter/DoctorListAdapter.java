@@ -53,7 +53,6 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
         holder.doctorQualification.setText(DoctorList.get(position).getQualification());
         holder.doctorType.setText(DoctorList.get(position).getType());
         holder.doctorTime.setText(DoctorList.get(position).getTime());
-        holder.doctorDays.setText(DoctorList.get(position).getDays());
 
         /* Picasso is Slower than Glide i don't know why?
         Picasso.get().load(DoctorList.get(position).getDoctorurl())
@@ -80,7 +79,6 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
                 in.putExtra("DoctorQualification",DoctorList.get(position).getQualification());
                 in.putExtra("DoctorType",DoctorList.get(position).getType());
                 in.putExtra("DoctorTime",DoctorList.get(position).getTime());
-                in.putExtra("DoctorDays",DoctorList.get(position).getDays());
 
                 v.getContext().startActivity(in);
             }
@@ -97,7 +95,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
         CardView cardview;
         RelativeLayout doctorRelative;
         CircleImageView doctorImage;
-        TextView doctorName,doctorQualification,doctorType,doctorTime,doctorDays;
+        TextView doctorName,doctorQualification,doctorType,doctorTime;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -110,7 +108,6 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
             doctorQualification = (TextView)itemView.findViewById(R.id.doctor_qualification);
             doctorType = (TextView)itemView.findViewById(R.id.doctor_type);
             doctorTime = (TextView)itemView.findViewById(R.id.doctor_time);
-            doctorDays = (TextView)itemView.findViewById(R.id.doctor_day_available);
         }
     }
 }

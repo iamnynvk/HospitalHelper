@@ -101,6 +101,7 @@ public class ForgotpasswordOTPVerification extends AppCompatActivity {
                             verificationId,
                             code
                     );
+
                     FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override

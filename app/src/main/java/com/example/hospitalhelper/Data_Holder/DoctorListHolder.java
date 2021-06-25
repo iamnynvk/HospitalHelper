@@ -1,18 +1,17 @@
 package com.example.hospitalhelper.Data_Holder;
 
 public class DoctorListHolder {
-    String doctorurl,doctorname,qualification,type,time,days;
+    String doctorurl,doctorname,qualification,type,time;
 
     public DoctorListHolder() {
     }
 
-    public DoctorListHolder(String doctorurl, String doctorname, String qualification, String type, String time, String days) {
+    public DoctorListHolder(String doctorurl, String doctorname, String qualification, String type, String time) {
         this.doctorurl = doctorurl;
         this.doctorname = doctorname;
         this.qualification = qualification;
         this.type = type;
         this.time = time;
-        this.days = days;
     }
 
     public String getDoctorurl() {
@@ -53,13 +52,5 @@ public class DoctorListHolder {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    public String getDays() {
-        return days;
-    }
-
-    public void setDays(String days) {
-        this.days = days;
     }
 }

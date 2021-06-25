@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.hospitalhelper.Data_Holder.NewPasswordHolder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,9 +52,10 @@ public class ForgotpasswordActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                dataSnapshot.getRef().child(user).setValue(password);
+                                dataSnapshot.getRef().child("password").setValue(password);
+                                /*dataSnapshot.child("Patients").child(user).child("password").setValue(password);*/
 
-                                Toast.makeText(ForgotpasswordActivity.this, "Upload New Password", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ForgotpasswordActivity.this, "Uploaded New Password", Toast.LENGTH_LONG).show();
 
                                 Intent i = new Intent(ForgotpasswordActivity.this, LogInScreen.class);
                                 startActivity(i);

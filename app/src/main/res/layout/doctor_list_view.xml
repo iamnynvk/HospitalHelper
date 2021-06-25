@@ -77,57 +77,27 @@
 
         <TextView
             android:id="@+id/doctor_time"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/time_txt"
             android:text="10:00 to 5:00"
-            android:layout_marginStart="@dimen/size_20dp"
-            android:layout_marginTop="@dimen/size_5dp"
-            android:fontFamily="@font/montserratregular"
-            android:textColor="@color/intro_desription_color"
-            android:textSize="@dimen/size_13dp" />
-
-        <TextView
-            android:id="@+id/day_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_below="@+id/doctor_image"
-            android:layout_toRightOf="@+id/doctor_time"
-            android:layout_marginLeft="@dimen/size_10dp"
+            android:gravity="right"
             android:layout_marginTop="@dimen/size_18dp"
-            android:text="Available Days"
-            android:textAlignment="textEnd"
+            android:layout_marginStart="@dimen/size_20dp"
             android:layout_marginEnd="@dimen/size_20dp"
-            android:layout_marginStart="@dimen/size_10dp"
-            android:fontFamily="@font/montserratmedium"
-            android:textColor="@color/intro_title_color"
-            android:textSize="@dimen/size_15dp"/>
-
-        <TextView
-            android:id="@+id/doctor_day_available"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/day_txt"
-            android:layout_marginTop="@dimen/size_5dp"
-            android:layout_toRightOf="@+id/doctor_time"
-            android:layout_marginStart="@dimen/size_10dp"
-            android:layout_marginEnd="@dimen/size_20dp"
-            android:text="Monday,Tuesday"
-            android:textAlignment="textEnd"
             android:fontFamily="@font/montserratregular"
             android:textColor="@color/intro_desription_color"
             android:textSize="@dimen/size_13dp" />
+
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/lines"
-            android:layout_below="@+id/doctor_day_available"
+            android:layout_below="@+id/doctor_time"
             android:layout_marginRight="@dimen/size_15dp"
             android:layout_marginLeft="@dimen/size_15dp"
             android:layout_marginTop="@dimen/size_7dp"/>
-
-
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

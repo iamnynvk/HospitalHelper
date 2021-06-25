@@ -57,7 +57,7 @@ public class LogInScreen extends AppCompatActivity {
         forgot_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LogInScreen.this,ForgotPasswordOTPSend.class);
+                Intent i = new Intent(LogInScreen.this,ForgotPasswordScreen.class);
                 startActivity(i);
                 finish();
             }

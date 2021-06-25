@@ -89,7 +89,6 @@ public class Doctor extends AppCompatActivity {
                     Holder.setQualification(dataSnapshot.child("qualification").getValue().toString());
                     Holder.setType(dataSnapshot.child("type").getValue().toString());
                     Holder.setTime(dataSnapshot.child("time").getValue().toString());
-                    Holder.setDays(dataSnapshot.child("days").getValue().toString());
 
                     DoctorData.add(Holder);
                 }

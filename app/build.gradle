@@ -80,7 +80,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:6.2.0'
     implementation 'com.firebaseui:firebase-ui-database:4.3.2'
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
-    implementation 'com.google.firebase:firebase-bom:26.0.0'
+    implementation 'com.google.firebase:firebase-bom:28.1.0'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'

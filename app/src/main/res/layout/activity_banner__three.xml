@@ -85,7 +85,7 @@
                     android:textSize="@dimen/size_13dp"
                     android:textColor="@color/intro_desription_color"
                     android:textAlignment="center"
-                    android:fontFamily="@font/montserratmedium"
+                    android:fontFamily="@font/montserratregular"
                     android:lineSpacingExtra="@dimen/size_2dp"
                     android:text="The hospital Canteen is located\nin the hospital to serve the patients, attendants and visitors.\n\nThe hygienic food served in the canteen at affordable rates is found very useful \nfor all those receiving Health-Care services from the hospital.\n\n
 The carteen is open for services between 5:30 AM to 9:30 PM." />

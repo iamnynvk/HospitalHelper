@@ -113,6 +113,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/size_12dp"
+                        android:fontFamily="@font/montserratregular"
                         android:textColor="@color/intro_desription_color"
                         android:text="80 Beds"/>
                 </LinearLayout>
@@ -142,6 +143,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/size_12dp"
+                        android:fontFamily="@font/montserratregular"
                         android:textColor="@color/intro_desription_color"
                         android:text="60 Beds"/>
                 </LinearLayout>
@@ -171,6 +173,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/size_12dp"
+                        android:fontFamily="@font/montserratregular"
                         android:textColor="@color/intro_desription_color"
                         android:text="20 Beds"/>
                 </LinearLayout>
@@ -201,6 +204,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/size_12dp"
+                        android:fontFamily="@font/montserratregular"
                         android:textColor="@color/intro_desription_color"
                         android:text="110 Beds"/>
                 </LinearLayout>

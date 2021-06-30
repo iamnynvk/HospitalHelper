@@ -85,9 +85,9 @@
                     android:textSize="@dimen/size_13dp"
                     android:textColor="@color/intro_desription_color"
                     android:textAlignment="center"
-                    android:fontFamily="@font/montserratmedium"
+                    android:fontFamily="@font/montserratregular"
                     android:lineSpacingExtra="@dimen/size_2dp"
-                    android:text="The Sanjivni Hospital offers 24x7 ambulance facility comparising of two ambulances.\n\n
+                    android:text="The Kiran Hospital, Surat\noffers 24x7 ambulance facility comparising of two ambulances.\n\n
 Advanced care ambulance, meant for transportation of unstable patients, is equipped with multipara monitor, ventilator, oxygen, suction etc.\n\n
 This ambulance is manned by ACLS/BLS trained doctors, nurses with trained drivers." />
             </RelativeLayout>

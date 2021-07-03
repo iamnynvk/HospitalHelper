@@ -27,11 +27,6 @@
                 android:title="Blood Donate"/>
 
             <item
-                android:id="@+id/facilities"
-                android:icon="@drawable/facilities"
-                android:title="Facilities"/>
-
-            <item
                 android:id="@+id/videos"
                 android:icon="@drawable/videos"
                 android:title="Videos"/>
@@ -40,11 +35,6 @@
                 android:id="@+id/contact_us"
                 android:icon="@drawable/contect_us"
                 android:title="Contact Us"/>
-
-            <item
-                android:id="@+id/about_us"
-                android:icon="@drawable/about_us"
-                android:title="About Us"/>
 
     </group>
 </menu>

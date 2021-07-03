@@ -306,13 +306,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 finish();
                 return true;
 
-            case R.id.facilities:
-                Intent i6 = new Intent(getApplicationContext(),Facilities.class);
-                startActivity(i6);
-                overridePendingTransition(0,0);
-                finish();
-                return true;
-
             case R.id.videos:
                 Intent i7 = new Intent(getApplicationContext(),Videos.class);
                 startActivity(i7);
@@ -323,13 +316,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             case R.id.contact_us:
                 Intent i8 = new Intent(getApplicationContext(),ContactUs.class);
                 startActivity(i8);
-                overridePendingTransition(0,0);
-                finish();
-                return true;
-
-            case R.id.about_us:
-                Intent i9 = new Intent(getApplicationContext(),AboutUs.class);
-                startActivity(i9);
                 overridePendingTransition(0,0);
                 finish();
                 return true;

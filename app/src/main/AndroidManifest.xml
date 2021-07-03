@@ -26,10 +26,8 @@
         <activity android:name=".Banner_Four" />
         <activity android:name=".BloodDonateUser" />
         <activity android:name=".ProfileEdit" />
-        <activity android:name=".AboutUs" />
         <activity android:name=".ContactUs" />
         <activity android:name=".Videos" />
-        <activity android:name=".Facilities" />
         <activity android:name=".Doctor" />
         <activity android:name=".UserProfile" />
         <activity android:name=".BloodDonate" />
